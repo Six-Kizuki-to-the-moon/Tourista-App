@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_destination"
+            android:layout_width="129dp"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            style="@style/Title.Small"
+            android:id="@+id/tv_destination_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:paddingStart="8dp"
+            android:textFontWeight="700"
+            android:textColor="@color/black"
+            android:text="@string/destination_name"
+            app:layout_constraintStart_toStartOf="@+id/iv_destination"
+            app:layout_constraintTop_toBottomOf="@+id/iv_destination" />
+
+        <TextView
+            style="@style/Label.Small"
+            android:id="@+id/tv_destination_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingStart="8dp"
+            android:textColor="@color/neutral_300"
+            android:text="@string/destination_location"
+            app:layout_constraintStart_toStartOf="@+id/tv_destination_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_destination_name" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
