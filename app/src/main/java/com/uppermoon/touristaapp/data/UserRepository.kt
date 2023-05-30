@@ -3,6 +3,7 @@ package com.uppermoon.touristaapp.data
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.uppermoon.touristaapp.data.network.api.ApiService
+import com.uppermoon.touristaapp.data.network.response.LoginResponse
 import com.uppermoon.touristaapp.data.network.response.RegisterResponse
 
 class UserRepository(private val apiService: ApiService) {
@@ -24,7 +25,20 @@ class UserRepository(private val apiService: ApiService) {
         }
     }
 
-    fun postLogin(){
+    fun postLogin(
+        email: String,
+        password: String
+    ): LiveData<UserResult<LoginResponse>> = liveData{
+        emit(UserResult.Loading)
+        try {
+            val loginResponse =
+                apiService.loginUser(email, password)
+            emit(UserResult.Success(loginResponse))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(UserResult.Error(e.toString()))
+        }
+
 
     }
 
