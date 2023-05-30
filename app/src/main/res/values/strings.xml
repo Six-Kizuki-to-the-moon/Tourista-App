@@ -9,6 +9,7 @@
     <string name="get_started">Get Started</string>
     <string name="welcome_text">Welcome to </string>
     <string name="welcome_desc">Tourista will help you discover amazing places around Indonesia, from beautiful beaches to thrilling nature adventures. Join  with us and start your amazing experience with Tourista!</string>
+    <string name="login_image_desc">This is login image</string>
     <string name="login_text">Login</string>
     <string name="email_label">Email</string>
     <string name="email_hint">Input your email</string>

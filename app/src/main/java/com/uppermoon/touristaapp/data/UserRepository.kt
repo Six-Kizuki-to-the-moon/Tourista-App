@@ -24,6 +24,10 @@ class UserRepository(private val apiService: ApiService) {
         }
     }
 
+    fun postLogin(){
+
+    }
+
     companion object {
         @Volatile
         private var instance: UserRepository? = null

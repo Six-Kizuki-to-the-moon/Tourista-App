@@ -1,9 +1,10 @@
 package com.uppermoon.touristaapp.presentation.login
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.uppermoon.touristaapp.R
 import com.uppermoon.touristaapp.databinding.ActivityLoginBinding
+import com.uppermoon.touristaapp.presentation.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -16,5 +17,13 @@ class LoginActivity : AppCompatActivity() {
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val btnToRegister = binding.btnGotoRegister
+
+
+        btnToRegister.setOnClickListener {
+            val intentToRegis = Intent(this, RegisterActivity::class.java)
+            startActivity(intentToRegis)
+        }
     }
 }
