@@ -22,4 +22,10 @@
         android:name="com.uppermoon.touristaapp.presentation.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.uppermoon.touristaapp.presentation.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
