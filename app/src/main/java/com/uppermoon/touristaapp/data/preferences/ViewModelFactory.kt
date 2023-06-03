@@ -7,6 +7,7 @@ import com.uppermoon.touristaapp.data.UserRepository
 import com.uppermoon.touristaapp.di.Injection
 import com.uppermoon.touristaapp.presentation.login.LoginViewModel
 import com.uppermoon.touristaapp.presentation.register.RegisterViewModel
+import com.uppermoon.touristaapp.presentation.welcome.WelcomeViewModel
 
 class ViewModelFactory constructor(
     private val userRepository: UserRepository,
@@ -17,6 +18,8 @@ class ViewModelFactory constructor(
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
             return RegisterViewModel(userRepository) as T
+        }else if (modelClass.isAssignableFrom(WelcomeViewModel::class.java)) {
+            return WelcomeViewModel(pref) as T
         } else if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return LoginViewModel(userRepository, pref) as T
         }

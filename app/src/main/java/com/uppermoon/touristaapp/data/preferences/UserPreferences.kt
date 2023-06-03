@@ -2,6 +2,7 @@ package com.uppermoon.touristaapp.data.preferences
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.uppermoon.touristaapp.domain.User
@@ -31,8 +32,15 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
 
     }
 
+    fun isLoggedIn(): Flow<Boolean> {
+        return dataStore.data.map { preferences ->
+            preferences[LOGGED_IN] ?: false
+        }
+    }
+
     companion object {
         private val TOKEN = stringPreferencesKey("token")
+        private val LOGGED_IN = booleanPreferencesKey("false")
 
         @Volatile
         private var INSTANCE: UserPreferences? = null

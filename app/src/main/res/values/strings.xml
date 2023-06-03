@@ -39,4 +39,7 @@
     <string name="review_decription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="privacy_policy_label">Privacy Policy</string>
+    <string name="help_center_label">Help Center</string>
+    <string name="logout_text">Logout</string>
 </resources>

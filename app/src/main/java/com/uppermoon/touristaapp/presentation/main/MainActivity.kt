@@ -25,23 +25,6 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        replaceFragment(HomeFragment())
-//
-//                val navController = findNavController(R.id.nav_host_fragment_activity_main)
-//
-//
-//        binding.navView.setOnClickListener {
-//            when(it.id){
-//                R.id.navigation_home -> replaceFragment(HomeFragment())
-//                R.id.navigation_dashboard -> replaceFragment(DashboardFragment())
-//                R.id.navigation_notifications -> replaceFragment(NotificationsFragment())
-//                R.id.navigation_profile -> replaceFragment(ProfileFragment())
-//                else ->{
-//
-//                }
-//            }
-//            true
-//        }
 
         val navView: BottomNavigationView = binding.navView
 
@@ -51,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home,
-                R.id.navigation_dashboard,
+                R.id.navigation_explore,
                 R.id.navigation_notifications,
                 R.id.navigation_profile
             )
@@ -59,11 +42,4 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
-
-//    private fun replaceFragment(fragment: Fragment){
-//        val fragmentManager = supportFragmentManager
-//        val fragmentTransaction = fragmentManager.beginTransaction()
-//        fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, fragment)
-//        fragmentTransaction.commit()
-//    }
 }
