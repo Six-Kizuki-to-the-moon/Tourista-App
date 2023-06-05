@@ -77,16 +77,18 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_privacy_police" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_goto_register"
+            android:id="@+id/btn_goto_login"
             style="@style/Widget.AppCompat.Button.Borderless"
+            android:textAllCaps="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:text="@string/logout_text"
-            android:textColor="@color/blue_400"
+            android:textColor="@color/red_400"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="onLogoutButtonClicked"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

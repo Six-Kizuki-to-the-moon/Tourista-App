@@ -1,13 +1,15 @@
 package com.uppermoon.touristaapp.presentation.profile
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.uppermoon.touristaapp.data.preferences.UserPreferences
+import com.uppermoon.touristaapp.domain.User
+import kotlinx.coroutines.launch
 
-class ProfileViewModel: ViewModel() {
+class ProfileViewModel(private val userPreferences: UserPreferences): ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is profile Fragment"
+    fun clearToken() {
+        viewModelScope.launch {
+            userPreferences.clearToken()
+        }
     }
-    val text: LiveData<String> = _text
 }

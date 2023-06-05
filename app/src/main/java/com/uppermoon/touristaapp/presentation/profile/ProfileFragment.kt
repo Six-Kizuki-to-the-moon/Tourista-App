@@ -1,45 +1,60 @@
 package com.uppermoon.touristaapp.presentation.profile
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import com.uppermoon.touristaapp.R
-import com.uppermoon.touristaapp.databinding.FragmentNotificationsBinding
+import androidx.lifecycle.ViewModelProvider.NewInstanceFactory.Companion.instance
+import com.uppermoon.touristaapp.data.preferences.UserPreferences
+import com.uppermoon.touristaapp.data.preferences.ViewModelFactory
 import com.uppermoon.touristaapp.databinding.FragmentProfileBinding
-import com.uppermoon.touristaapp.presentation.notifications.NotificationsViewModel
+import com.uppermoon.touristaapp.presentation.login.LoginActivity
 
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "token")
 
 class ProfileFragment : Fragment() {
-    private var _binding: FragmentProfileBinding? = null
+    private lateinit var binding: FragmentProfileBinding
+    private lateinit var profileViewModel: ProfileViewModel
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private lateinit var username: String
+    private lateinit var email: String
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val profileViewModel =
-            ViewModelProvider(this).get(ProfileViewModel::class.java)
 
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.tvUsernameLabel
-        profileViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val btnLogout = binding.btnGotoLogin
+
+        btnLogout.setOnClickListener {
+            logoutUser()
         }
         return root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun logoutUser() {
+        val userPreferences = requireContext().dataStore
+        val instance = UserPreferences.getInstance(userPreferences)
+        val profileViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext(), instance)).get(ProfileViewModel::class.java)
+
+        profileViewModel.clearToken()
+
+        // Navigate to the login activity or perform any other action after logout
+        val intent = Intent(requireContext(), LoginActivity::class.java)
+        startActivity(intent)
+        requireActivity().finish() // Optional: Finish the current activity after navigating to login activity
+
     }
 }

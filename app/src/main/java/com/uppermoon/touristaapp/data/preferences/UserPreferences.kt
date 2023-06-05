@@ -19,6 +19,12 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         }
     }
 
+    suspend fun isLoggedIn(): Flow<Boolean> {
+        return dataStore.data.map { preferences ->
+            preferences[LOGGED_IN] ?: false
+        }
+    }
+
     suspend fun saveToken(user: User) {
         dataStore.edit { preferences ->
             preferences[TOKEN] = user.token
@@ -28,13 +34,6 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
     suspend fun clearToken() {
         dataStore.edit { preferences ->
             preferences.clear()
-        }
-
-    }
-
-    fun isLoggedIn(): Flow<Boolean> {
-        return dataStore.data.map { preferences ->
-            preferences[LOGGED_IN] ?: false
         }
     }
 

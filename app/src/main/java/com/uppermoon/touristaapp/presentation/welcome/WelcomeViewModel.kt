@@ -14,9 +14,5 @@ class WelcomeViewModel(private val userPreferences: UserPreferences): ViewModel(
         return userPreferences.getToken().asLiveData()
     }
 
-    fun saveToken(user: User) {
-        viewModelScope.launch {
-            userPreferences.saveToken(user)
-        }
-    }
+
 }

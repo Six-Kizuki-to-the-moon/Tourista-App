@@ -1,11 +1,14 @@
 package com.uppermoon.touristaapp.data.preferences
 
 import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.uppermoon.touristaapp.data.UserRepository
 import com.uppermoon.touristaapp.di.Injection
 import com.uppermoon.touristaapp.presentation.login.LoginViewModel
+import com.uppermoon.touristaapp.presentation.profile.ProfileViewModel
 import com.uppermoon.touristaapp.presentation.register.RegisterViewModel
 import com.uppermoon.touristaapp.presentation.welcome.WelcomeViewModel
 
@@ -22,6 +25,8 @@ class ViewModelFactory constructor(
             return WelcomeViewModel(pref) as T
         } else if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return LoginViewModel(userRepository, pref) as T
+        } else if (modelClass.isAssignableFrom(ProfileViewModel::class.java)) {
+            return ProfileViewModel(pref) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

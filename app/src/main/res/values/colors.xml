@@ -20,6 +20,18 @@
     <color name="blue_800">#FF14486B</color>
     <color name="blue_900">#FF0F3751</color>
 
+    <!--    red color style-->
+    <color name="red_50">#FFFDEAEA</color>
+    <color name="red_100">#FFF9BDBD</color>
+    <color name="red_200">#FFF79D9D</color>
+    <color name="red_300">#FFF37170</color>
+    <color name="red_400">#FFF15555</color>
+    <color name="red_500">#FFED2B2A</color>
+    <color name="red_600">#FFD82726</color>
+    <color name="red_700">#FFA81F1E</color>
+    <color name="red_800">#FF821817</color>
+    <color name="red_900">#FF641212</color>
+
     <!--    neutral color style-->
     <color name="neutral_100">#FFB4B4B4</color>
     <color name="neutral_200">#FF8E8E8E</color>
