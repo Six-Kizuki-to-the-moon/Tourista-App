@@ -50,7 +50,6 @@ class ProfileFragment : Fragment() {
         val profileViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext(), instance)).get(ProfileViewModel::class.java)
 
         profileViewModel.clearToken()
-
         val intent = Intent(requireContext(), LoginActivity::class.java)
         startActivity(intent)
         requireActivity().finish()
