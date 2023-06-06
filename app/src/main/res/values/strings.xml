@@ -1,14 +1,17 @@
 <resources>
     <string name="app_name">Tourista App</string>
+    <!--    bottom bar-->
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_explore">Explore</string>
     <string name="title_profile">Profile</string>
+    <!--    welcome page-->
     <string name="tourista">Tourista!</string>
     <string name="get_started">Get Started</string>
     <string name="welcome_text">Welcome to </string>
     <string name="welcome_desc">Tourista will help you discover amazing places around Indonesia, from beautiful beaches to thrilling nature adventures. Join  with us and start your amazing experience with Tourista!</string>
+    <!--    login page-->
     <string name="login_image_desc">This is login image</string>
     <string name="login_text">Login</string>
     <string name="email_label">Email</string>
@@ -16,29 +19,35 @@
     <string name="password_label">Password</string>
     <string name="password_hint">Input your password</string>
     <string name="dont_have_account">Don\'t have account? Register now</string>
+    <!--    register page-->
     <string name="register_text">Register</string>
     <string name="username_label">Username</string>
     <string name="username_hint">Input your username</string>
     <string name="confirm_password_label">Confirm Password</string>
     <string name="confirm_password_hint">Confirm Password</string>
+    <!--    destination list item-->
     <string name="destination_name">Destination Name</string>
     <string name="destination_location">Destination Location</string>
     <string name="destination_decription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consequat ex. Nullam elit libero, commodo sit amet aliquet sit amet, vulputate eget massa. Praesent consectetur lorem ac odio viverra ullamcorper.</string>
-
+    <!--    home fragment-->
+    <string name="user_greeting">Hi %1$s,</string>
+    <string name="home_greeting">Where are you planning to go today?</string>
     <string name="search_hint">Search</string>
     <string name="popular_destination_label">Popular Destination</string>
-
+    <string name="near_destination_label">Destination near you</string>
+    <!--    explore fragment-->
     <string name="pick_location_label">Pick your location</string>
+    <string name="use_my_location_label">Use my location</string>
     <string name="pick_categories_label">Pick your categories</string>
     <string name="pick_price_label">Choose budget range</string>
     <string name="price_hint">Rp</string>
     <string name="need_acommodation_label">Need acommodation?</string>
     <string name="yes_acommodation">Yes</string>
     <string name="search_now">Search Now</string>
+    <!--    review item-->
     <string name="rating">4.5</string>
     <string name="review_decription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--profile fragment-->
     <string name="privacy_policy_label">Privacy Policy</string>
     <string name="help_center_label">Help Center</string>
     <string name="logout_text">Log Out</string>

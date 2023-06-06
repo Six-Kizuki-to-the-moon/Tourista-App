@@ -51,10 +51,9 @@ class ProfileFragment : Fragment() {
 
         profileViewModel.clearToken()
 
-        // Navigate to the login activity or perform any other action after logout
         val intent = Intent(requireContext(), LoginActivity::class.java)
         startActivity(intent)
-        requireActivity().finish() // Optional: Finish the current activity after navigating to login activity
+        requireActivity().finish()
 
     }
 }

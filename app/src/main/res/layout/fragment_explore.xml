@@ -22,12 +22,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Switch
+            android:id="@+id/sw_use_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/use_my_location_label"
+            app:layout_constraintStart_toStartOf="@+id/tv_location_label"
+            app:layout_constraintTop_toBottomOf="@+id/tv_location_label" />
+
         <Spinner
             android:id="@+id/spinner_city"
             style="@style/SpinnerStyle"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_location_label" />
+            app:layout_constraintTop_toBottomOf="@+id/sw_use_location" />
 
         <TextView
             android:id="@+id/tv_categories_label"
@@ -104,6 +113,8 @@
             android:text="@string/search_now"
             app:layout_constraintStart_toStartOf="@+id/checkBox"
             app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
