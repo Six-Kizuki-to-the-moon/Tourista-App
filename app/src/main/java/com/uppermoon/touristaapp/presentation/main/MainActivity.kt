@@ -3,18 +3,12 @@ package com.uppermoon.touristaapp.presentation.main
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.replace
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.uppermoon.touristaapp.R
 import com.uppermoon.touristaapp.databinding.ActivityMainBinding
-import com.uppermoon.touristaapp.presentation.dashboard.DashboardFragment
-import com.uppermoon.touristaapp.presentation.home.HomeFragment
-import com.uppermoon.touristaapp.presentation.notifications.NotificationsFragment
-import com.uppermoon.touristaapp.presentation.profile.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,6 +19,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.hide()
 
         val navView: BottomNavigationView = binding.navView
 

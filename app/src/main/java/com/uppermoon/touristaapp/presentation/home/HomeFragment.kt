@@ -12,12 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.uppermoon.touristaapp.R
 import com.uppermoon.touristaapp.data.dummy.Destination
 import com.uppermoon.touristaapp.databinding.FragmentHomeBinding
+import com.uppermoon.touristaapp.ui.adapter.CardDestinationAdapter
 import com.uppermoon.touristaapp.ui.adapter.ListDestinationAdapter
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var rvDestination: RecyclerView
+    private lateinit var rvCardDestination: RecyclerView
+    private lateinit var rvListDestination: RecyclerView
     private val list = ArrayList<Destination>()
 
     override fun onCreateView(
@@ -25,26 +27,37 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+
         val homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
 
-        rvDestination = binding.rvPopularItem
+        rvCardDestination = binding.rvPopularItem
+        rvListDestination = binding.rvNearItem
 
 
         list.addAll(getDestinationList())
+        showRecyclerCard()
         showRecyclerList()
 
         return binding.root
     }
 
-    private fun showRecyclerList() {
-        rvDestination.layoutManager =
+    private fun showRecyclerCard() {
+        rvCardDestination.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        val cardDestinationAdapter = CardDestinationAdapter(list)
+        rvCardDestination.adapter = cardDestinationAdapter
+    }
+
+    private fun showRecyclerList() {
+        rvListDestination.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         val listDestinationAdapter = ListDestinationAdapter(list)
-        rvDestination.adapter = listDestinationAdapter
+        rvListDestination.adapter = listDestinationAdapter
     }
 
     private fun getDestinationList(): ArrayList<Destination> {

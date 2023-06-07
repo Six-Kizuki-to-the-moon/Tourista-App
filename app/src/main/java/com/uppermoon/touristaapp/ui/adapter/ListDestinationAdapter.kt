@@ -6,13 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.uppermoon.touristaapp.data.dummy.Destination
 import com.uppermoon.touristaapp.databinding.CardDestinationItemBinding
+import com.uppermoon.touristaapp.databinding.ListDestinationItemBinding
 
 class ListDestinationAdapter(private var listDestination: ArrayList<Destination>) :
     RecyclerView.Adapter<ListDestinationAdapter.ListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding =
-            CardDestinationItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ListDestinationItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ListViewHolder(binding)
     }
 
@@ -21,13 +22,15 @@ class ListDestinationAdapter(private var listDestination: ArrayList<Destination>
         viewHolder.apply {
             destinationItemBinding.apply {
                 tvDestinationName.text = dataDestination.name
+                tvDestinationLocation.text = dataDestination.city
                 ivDestination.load(dataDestination.photo)
+                tvDestinationDescription.text = dataDestination.description
             }
         }
     }
 
     override fun getItemCount(): Int = listDestination.size
 
-    class ListViewHolder(val destinationItemBinding: CardDestinationItemBinding) :
+    class ListViewHolder(val destinationItemBinding: ListDestinationItemBinding) :
         RecyclerView.ViewHolder(destinationItemBinding.root)
 }

@@ -79,6 +79,7 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.makeText(this, "Akun berhasil dibuat", Toast.LENGTH_SHORT).show()
                     val intentLogin = Intent(this, LoginActivity::class.java)
                     startActivity(intentLogin)
+                    finish()
                 }
                 is UserResult.Loading -> {
                     showLoading(true)

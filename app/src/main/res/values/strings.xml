@@ -51,7 +51,7 @@
     <string name="privacy_policy_label">Privacy Policy</string>
     <string name="help_center_label">Help Center</string>
     <string name="logout_text">Log Out</string>
-<!--    dummy data-->
+    <!--    dummy data-->
     <string-array name="place_name">
         <item>Braga</item>
         <item>Monas</item>
