@@ -83,4 +83,17 @@
         <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consequat ex. Nullam elit libero, commodo sit amet aliquet sit amet, vulputate eget massa. Praesent consectetur lorem ac odio viverra ullamcorper.</item>
         <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consequat ex. Nullam elit libero, commodo sit amet aliquet sit amet, vulputate eget massa. Praesent consectetur lorem ac odio viverra ullamcorper.</item>
     </string-array>
+
+<!--    dummy review-->
+    <string-array name="username">
+        <item>Makima</item>
+        <item>Makima</item>
+        <item>Makima</item>
+    </string-array>
+    <string-array name="user_rating">
+        <item>4.5</item>
+        <item>4.3</item>
+        <item>3.5</item>
+    </string-array>
+
 </resources>
