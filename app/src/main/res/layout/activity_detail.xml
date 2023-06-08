@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".presentation.detail.DetailActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_destination_name"
+            style="@style/Title.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textColor="@color/neutral_800"
+            android:textFontWeight="700"
+            android:text="@string/destination_name"
+            app:layout_constraintStart_toStartOf="@+id/iv_image"
+            app:layout_constraintTop_toBottomOf="@+id/iv_image" />
+
+        <TextView
+            style="@style/Title.Medium"
+            android:id="@+id/tv_destination_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/destination_location"
+            app:layout_constraintStart_toStartOf="@+id/tv_destination_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_destination_name" />
+
+        <TextView
+            style="@style/Body.Medium"
+            android:id="@+id/tv_destination_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:justificationMode="inter_word"
+            android:layout_marginTop="12dp"
+            android:text="@string/destination_decription"
+            app:layout_constraintStart_toStartOf="@+id/tv_destination_location"
+            app:layout_constraintTop_toBottomOf="@+id/tv_destination_location" />
+
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="377dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="12dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="@+id/tv_destination_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_destination_description" />
+
+        <TextView
+            style="@style/Title.Medium"
+            android:id="@+id/tv_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/review_label"
+            app:layout_constraintStart_toStartOf="@+id/divider1"
+            app:layout_constraintTop_toBottomOf="@id/divider1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_goto_review"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="See All"
+            android:textColor="@color/blue_400"
+            app:layout_constraintEnd_toEndOf="@+id/divider1"
+            app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
+        <TextView
+            android:id="@+id/tv_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="4.3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_review" />
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/list_review_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="@+id/divider1"
+            app:layout_constraintTop_toBottomOf="@id/btn_goto_review" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="24dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="@+id/include"
+            app:layout_constraintStart_toStartOf="@+id/include"
+            app:layout_constraintTop_toBottomOf="@+id/include" />
+
+        <TextView
+            android:id="@+id/tv_umkm_label"
+            style="@style/Title.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/umkm_label"
+            android:textColor="@color/neutral_800"
+            app:layout_constraintStart_toStartOf="@id/divider2"
+            app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+        <TextView
+            android:id="@+id/tv_umkm_desc"
+            style="@style/Body.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Let\'s support UMKM around the location!"
+            android:textColor="@color/neutral_400"
+            app:layout_constraintStart_toStartOf="@id/tv_umkm_label"
+            app:layout_constraintTop_toBottomOf="@+id/tv_umkm_label" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_umkm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_umkm_desc"
+            app:layout_constraintTop_toBottomOf="@+id/tv_umkm_desc" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.core.widget.NestedScrollView>

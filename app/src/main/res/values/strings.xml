@@ -51,6 +51,8 @@
     <string name="privacy_policy_label">Privacy Policy</string>
     <string name="help_center_label">Help Center</string>
     <string name="logout_text">Log Out</string>
+    <string name="review_label">Review</string>
+    <string name="umkm_label">Business around you</string>
     <!--    dummy data-->
     <string-array name="place_name">
         <item>Braga</item>
@@ -84,7 +86,7 @@
         <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consequat ex. Nullam elit libero, commodo sit amet aliquet sit amet, vulputate eget massa. Praesent consectetur lorem ac odio viverra ullamcorper.</item>
     </string-array>
 
-<!--    dummy review-->
+    <!--    dummy review-->
     <string-array name="username">
         <item>Makima</item>
         <item>Makima</item>
@@ -95,5 +97,16 @@
         <item>4.3</item>
         <item>3.5</item>
     </string-array>
+    <string-array name="photo_url">
+        <item>https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Jl_Braga_Street_Sign_in_Bandung.jpg/330px-Jl_Braga_Street_Sign_in_Bandung.jpg</item>
+        <item>https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Jl_Braga_Street_Sign_in_Bandung.jpg/330px-Jl_Braga_Street_Sign_in_Bandung.jpg</item>
+        <item>https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Jl_Braga_Street_Sign_in_Bandung.jpg/330px-Jl_Braga_Street_Sign_in_Bandung.jpg</item>
+    </string-array>
+    <string-array name="review">
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consequat ex. Nullam elit libero, commodo sit amet aliquet sit amet, vulputate eget massa. Praesent consectetur lorem ac odio viverra ullamcorper.</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consequat ex. Nullam elit libero, commodo sit amet aliquet sit amet, vulputate eget massa. Praesent consectetur lorem ac odio viverra ullamcorper.</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consequat ex. Nullam elit libero, commodo sit amet aliquet sit amet, vulputate eget massa. Praesent consectetur lorem ac odio viverra ullamcorper.</item>
+    </string-array>
+
 
 </resources>
