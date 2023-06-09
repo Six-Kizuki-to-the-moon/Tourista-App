@@ -63,27 +63,28 @@
             app:layout_constraintTop_toBottomOf="@+id/spinner_categories" />
 
         <EditText
+            android:id="@+id/et_price"
             style="@style/EditTextGeneral"
-            android:id="@+id/editTextNumber"
             android:layout_width="match_parent"
             android:layout_marginTop="8dp"
             android:ems="10"
-            android:inputType="number"
             android:hint="@string/price_hint"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="@+id/tv_price_label"
             app:layout_constraintStart_toStartOf="@+id/tv_price_label"
             app:layout_constraintTop_toBottomOf="@+id/tv_price_label" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btn_search"
             style="@style/ButtonGeneral"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:background="@drawable/rounded_button"
             android:text="@string/search_now"
-            app:layout_constraintStart_toStartOf="@+id/checkBox"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+            app:layout_constraintEnd_toEndOf="@+id/et_price"
+            app:layout_constraintStart_toStartOf="@+id/et_price"
+            app:layout_constraintTop_toBottomOf="@+id/et_price" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
