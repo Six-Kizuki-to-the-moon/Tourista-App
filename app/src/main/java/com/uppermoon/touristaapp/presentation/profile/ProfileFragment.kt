@@ -36,6 +36,10 @@ class ProfileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        val userPreferences = requireContext().dataStore
+        val instance = UserPreferences.getInstance(userPreferences)
+        profileViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext(), instance)).get(ProfileViewModel::class.java)
+
         val btnLogout = binding.btnGotoLogin
 
         btnLogout.setOnClickListener {
@@ -45,10 +49,6 @@ class ProfileFragment : Fragment() {
     }
 
     private fun logoutUser() {
-        val userPreferences = requireContext().dataStore
-        val instance = UserPreferences.getInstance(userPreferences)
-        val profileViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext(), instance)).get(ProfileViewModel::class.java)
-
         profileViewModel.clearToken()
         val intent = Intent(requireContext(), LoginActivity::class.java)
         startActivity(intent)

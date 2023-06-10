@@ -6,6 +6,8 @@ import com.uppermoon.touristaapp.data.network.api.ApiService
 import com.uppermoon.touristaapp.data.network.response.DetailUserResponse
 import com.uppermoon.touristaapp.data.network.response.LoginResponse
 import com.uppermoon.touristaapp.data.network.response.RegisterResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 class UserRepository(private val apiService: ApiService) {
 
@@ -49,6 +51,24 @@ class UserRepository(private val apiService: ApiService) {
         try {
             val getUserResponse = apiService.getUsersById("Bearer $token", id)
             emit(UserResult.Success(getUserResponse))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(UserResult.Error(e.toString()))
+        }
+    }
+
+    fun postCreateProfile(
+        imageMultipart: MultipartBody.Part,
+        name: RequestBody,
+        phoneNumber: RequestBody,
+        address: RequestBody,
+        lat: RequestBody,
+        lon: RequestBody,
+    ): LiveData<UserResult<DetailUserResponse>> = liveData {
+        emit(UserResult.Loading)
+        try {
+            val postUserProfile = apiService.createProfile(imageMultipart, name, phoneNumber, address, lat, lon)
+            emit(UserResult.Success(postUserProfile))
         } catch (e: Exception) {
             e.printStackTrace()
             emit(UserResult.Error(e.toString()))

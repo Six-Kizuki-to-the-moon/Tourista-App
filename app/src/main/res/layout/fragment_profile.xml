@@ -44,15 +44,26 @@
             app:layout_constraintStart_toStartOf="@+id/tv_username_label"
             app:layout_constraintTop_toBottomOf="@+id/tv_username_label" />
 
+        <Button
+            android:id="@+id/btn_create_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_button"
+            android:text="Create Profile"
+            app:layout_constraintEnd_toEndOf="@+id/tv_email_label"
+            app:layout_constraintStart_toStartOf="@+id/tv_email_label"
+            app:layout_constraintTop_toBottomOf="@+id/tv_email_label" />
+
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_email_label" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_create_profile" />
 
         <TextView
             android:id="@+id/tv_privacy_police"
@@ -89,6 +100,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:onClick="onLogoutButtonClicked"/>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

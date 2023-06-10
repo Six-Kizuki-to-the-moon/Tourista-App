@@ -35,7 +35,6 @@ interface ApiService {
     @POST("users/createProfile")
     suspend fun createProfile(
         @Part file: MultipartBody.Part,
-        @Header("Authorization") token: String,
         @Field("name") name: RequestBody,
         @Field("phone_number") phoneNumber: RequestBody,
         @Field("address") address: RequestBody,
