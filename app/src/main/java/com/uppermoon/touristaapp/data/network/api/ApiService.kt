@@ -1,10 +1,11 @@
 package com.uppermoon.touristaapp.data.network.api
 
+import com.uppermoon.touristaapp.data.network.response.DetailUserResponse
 import com.uppermoon.touristaapp.data.network.response.LoginResponse
 import com.uppermoon.touristaapp.data.network.response.RegisterResponse
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -23,4 +24,25 @@ interface ApiService {
         @Field("email") email: String,
         @Field("password") password: String
     ): LoginResponse
+
+    @GET("users/{id}")
+    suspend fun getUsersById(
+        @Header("Authorization") token: String,
+        @Path("id") id: String
+    ): DetailUserResponse
+
+    @Multipart
+    @POST("users/createProfile")
+    suspend fun createProfile(
+        @Part file: MultipartBody.Part,
+        @Header("Authorization") token: String,
+        @Field("name") name: RequestBody,
+        @Field("phone_number") phoneNumber: RequestBody,
+        @Field("address") address: RequestBody,
+        @Field("user_lat") lat: RequestBody,
+        @Field("user_lon") lon: RequestBody,
+    ): DetailUserResponse
+
+//    Method for destination
+
 }
