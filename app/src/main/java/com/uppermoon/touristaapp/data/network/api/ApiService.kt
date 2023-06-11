@@ -1,5 +1,6 @@
 package com.uppermoon.touristaapp.data.network.api
 
+import com.uppermoon.touristaapp.data.network.response.DestinationResponse
 import com.uppermoon.touristaapp.data.network.response.DetailUserResponse
 import com.uppermoon.touristaapp.data.network.response.LoginResponse
 import com.uppermoon.touristaapp.data.network.response.RegisterResponse
@@ -44,4 +45,6 @@ interface ApiService {
 
 //    Method for destination
 
+    @GET("destination")
+    suspend fun getPopularDestination(): DestinationResponse
 }
