@@ -45,11 +45,11 @@ class UserRepository(private val apiService: ApiService) {
 
     fun getUserById(
         token: String,
-        id: String
+        id: Int
     ): LiveData<UserResult<DetailUserResponse>> = liveData {
         emit(UserResult.Loading)
         try {
-            val getUserResponse = apiService.getUsersById("Bearer $token", id)
+            val getUserResponse = apiService.getUsersById(token, id)
             emit(UserResult.Success(getUserResponse))
         } catch (e: Exception) {
             e.printStackTrace()
@@ -60,14 +60,15 @@ class UserRepository(private val apiService: ApiService) {
     fun postCreateProfile(
         imageMultipart: MultipartBody.Part,
         name: RequestBody,
+        age: RequestBody,
         phoneNumber: RequestBody,
         address: RequestBody,
-        lat: RequestBody,
-        lon: RequestBody,
+        lat: Int,
+        lon: Int,
     ): LiveData<UserResult<DetailUserResponse>> = liveData {
         emit(UserResult.Loading)
         try {
-            val postUserProfile = apiService.createProfile(imageMultipart, name, phoneNumber, address, lat, lon)
+            val postUserProfile = apiService.createProfile(imageMultipart, name, age, phoneNumber, address, lat, lon)
             emit(UserResult.Success(postUserProfile))
         } catch (e: Exception) {
             e.printStackTrace()

@@ -107,6 +107,12 @@
         <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consequat ex. Nullam elit libero, commodo sit amet aliquet sit amet, vulputate eget massa. Praesent consectetur lorem ac odio viverra ullamcorper.</item>
         <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consequat ex. Nullam elit libero, commodo sit amet aliquet sit amet, vulputate eget massa. Praesent consectetur lorem ac odio viverra ullamcorper.</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_label">Name</string>
+    <string name="age_label">Age</string>
+    <string name="phone_number_label">Phone number</string>
+    <string name="address_label">Address</string>
 
 
 </resources>

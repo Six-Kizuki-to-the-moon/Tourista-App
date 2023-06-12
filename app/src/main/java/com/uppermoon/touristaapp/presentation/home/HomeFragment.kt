@@ -1,63 +1,95 @@
 package com.uppermoon.touristaapp.presentation.home
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
-import com.uppermoon.touristaapp.R
-import com.uppermoon.touristaapp.data.dummy.Destination
+import com.uppermoon.touristaapp.data.DestinationRepository
+import com.uppermoon.touristaapp.data.network.api.ApiConfig
+import com.uppermoon.touristaapp.data.network.response.DestinationResponse
+import com.uppermoon.touristaapp.data.network.response.DestinationResponseItem
+import com.uppermoon.touristaapp.data.preferences.UserPreferences
+import com.uppermoon.touristaapp.data.preferences.ViewModelFactory
 import com.uppermoon.touristaapp.databinding.FragmentHomeBinding
 import com.uppermoon.touristaapp.ui.adapter.CardDestinationAdapter
 import com.uppermoon.touristaapp.ui.adapter.ListDestinationAdapter
 
+
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var rvCardDestination: RecyclerView
-    private lateinit var rvListDestination: RecyclerView
-    private val list = ArrayList<Destination>()
+    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var destinationRepository: DestinationRepository
+    private lateinit var adapter: CardDestinationAdapter
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var userLocation: Location? = null
 
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "token")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        val apiService = ApiConfig.getApiService()
+        destinationRepository = DestinationRepository.getInstance(apiService)
 
-        rvCardDestination = binding.rvPopularItem
-        rvListDestination = binding.rvNearItem
+        val pref = UserPreferences.getInstance(requireContext().dataStore)
+        val factory = ViewModelFactory.getInstance(requireActivity(), destinationRepository, pref)
+        homeViewModel = ViewModelProvider(requireActivity(), factory).get(
+            HomeViewModel::class.java
+        )
+
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
         // Mengecek izin lokasi pada saat fragment dibuat
         checkLocationPermission()
 
-        list.addAll(getDestinationList())
-        showRecyclerCard()
-        showRecyclerList()
+        initRecyclerView()
 
+        homeViewModel.listDestination.observe(viewLifecycleOwner) { items ->
+            if (items.isLoading){
+            }
+            if (items.error.isNotEmpty()){
+                Toast.makeText(requireContext(),items.error, Toast.LENGTH_SHORT).show()
+            }
+            if (items.destination.isNotEmpty()){
+                adapter.setData(items.destination)
+            }
+        }
         return binding.root
     }
+
+    private fun initRecyclerView() {
+        adapter = CardDestinationAdapter()
+        binding.rvPopularItem.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvPopularItem.adapter = adapter
+
+    }
+
 
     private fun checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(
@@ -112,38 +144,9 @@ class HomeFragment : Fragment() {
         // Implementasikan metode untuk memanggil API dan menampilkan responsnya di RecyclerView
     }
 
-
-    private fun showRecyclerCard() {
-        rvCardDestination.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        val cardDestinationAdapter = CardDestinationAdapter(list)
-        rvCardDestination.adapter = cardDestinationAdapter
-    }
-
-    private fun showRecyclerList() {
-        rvListDestination.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        val listDestinationAdapter = ListDestinationAdapter(list)
-        rvListDestination.adapter = listDestinationAdapter
-    }
-
-    private fun getDestinationList(): ArrayList<Destination> {
-        val dataDestinationName = resources.getStringArray(R.array.place_name)
-        val dataDestinationCity = resources.getStringArray(R.array.place_city)
-        val dataDestinationPhoto = resources.getStringArray(R.array.photo_city)
-        val dataDescription = resources.getStringArray(R.array.description_city)
-        val listDestination = ArrayList<Destination>()
-
-        for (i in dataDestinationName.indices) {
-            val destination = Destination(
-                dataDestinationName[i],
-                dataDestinationCity[i],
-                dataDestinationPhoto[i],
-                dataDescription[i]
-            )
-            listDestination.add(destination)
-        }
-        return listDestination
+    private fun setUserData(items: List<DestinationResponseItem>) {
+        adapter.setData(items)
+        binding.rvPopularItem.adapter = adapter
     }
 
     companion object {

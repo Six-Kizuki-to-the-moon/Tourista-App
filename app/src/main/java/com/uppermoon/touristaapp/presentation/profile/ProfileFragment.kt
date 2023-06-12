@@ -12,6 +12,9 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.NewInstanceFactory.Companion.instance
+import com.uppermoon.touristaapp.R
+import com.uppermoon.touristaapp.data.DestinationRepository
+import com.uppermoon.touristaapp.data.network.api.ApiConfig
 import com.uppermoon.touristaapp.data.preferences.UserPreferences
 import com.uppermoon.touristaapp.data.preferences.ViewModelFactory
 import com.uppermoon.touristaapp.databinding.FragmentProfileBinding
@@ -22,10 +25,7 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var profileViewModel: ProfileViewModel
-
-    private lateinit var username: String
-    private lateinit var email: String
-
+    private lateinit var destinationRepository: DestinationRepository
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,16 +36,28 @@ class ProfileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        val apiService = ApiConfig.getApiService()
         val userPreferences = requireContext().dataStore
+        destinationRepository = DestinationRepository.getInstance(apiService)
         val instance = UserPreferences.getInstance(userPreferences)
-        profileViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext(), instance)).get(ProfileViewModel::class.java)
+        profileViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext(), destinationRepository, instance)).get(ProfileViewModel::class.java)
 
         val btnLogout = binding.btnGotoLogin
+        val btnCreateProfile = binding.btnCreateProfile
 
         btnLogout.setOnClickListener {
             logoutUser()
         }
+
+        btnCreateProfile.setOnClickListener {
+            navigateToCreateProfile()
+        }
         return root
+    }
+
+    private fun navigateToCreateProfile() {
+        val intentCreateProfile = Intent(requireContext(), CreateProfileActivity::class.java)
+        startActivity(intentCreateProfile)
     }
 
     private fun logoutUser() {

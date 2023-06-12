@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".presentation.profile.CreateProfileActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/previewImageView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_placeholder" />
+
+        <Button
+            android:id="@+id/btn_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Open Camera"
+            app:layout_constraintEnd_toEndOf="@+id/previewImageView"
+            app:layout_constraintStart_toStartOf="@+id/previewImageView"
+            app:layout_constraintTop_toBottomOf="@+id/previewImageView" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/Label.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_label"
+            android:textColor="@color/neutral_800"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_camera" />
+
+        <EditText
+            android:id="@+id/et_name"
+            style="@style/EditTextGeneral"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+        <TextView
+            android:id="@+id/tv_age"
+            style="@style/Label.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/age_label"
+            android:textColor="@color/neutral_800"
+            app:layout_constraintStart_toStartOf="@id/et_name"
+            app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
+        <EditText
+            android:id="@+id/et_age"
+            style="@style/EditTextGeneral"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="Age"
+            app:layout_constraintStart_toStartOf="@+id/tv_age"
+            app:layout_constraintTop_toBottomOf="@id/tv_age" />
+
+        <TextView
+            android:id="@+id/tv_phonenumber"
+            style="@style/Label.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/phone_number_label"
+            android:textColor="@color/neutral_800"
+            app:layout_constraintStart_toStartOf="@id/et_age"
+            app:layout_constraintTop_toBottomOf="@+id/et_age" />
+
+        <EditText
+            android:id="@+id/et_phonenumber"
+            style="@style/EditTextGeneral"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="Phone number"
+            app:layout_constraintStart_toStartOf="@+id/tv_phonenumber"
+            app:layout_constraintTop_toBottomOf="@id/tv_phonenumber" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            style="@style/Label.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/address_label"
+            android:textColor="@color/neutral_800"
+            app:layout_constraintStart_toStartOf="@id/et_phonenumber"
+            app:layout_constraintTop_toBottomOf="@+id/et_phonenumber" />
+
+        <EditText
+            android:id="@+id/et_address"
+            style="@style/EditTextGeneral"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Address"
+            app:layout_constraintStart_toStartOf="@+id/tv_address"
+            app:layout_constraintTop_toBottomOf="@id/tv_address" />
+
+        <Button
+            android:id="@+id/btn_createprof"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Create Profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/et_address"
+            app:layout_constraintTop_toBottomOf="@+id/et_address" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

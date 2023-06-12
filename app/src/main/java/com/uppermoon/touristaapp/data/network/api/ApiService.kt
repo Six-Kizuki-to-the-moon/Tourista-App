@@ -1,9 +1,6 @@
 package com.uppermoon.touristaapp.data.network.api
 
-import com.uppermoon.touristaapp.data.network.response.DestinationResponse
-import com.uppermoon.touristaapp.data.network.response.DetailUserResponse
-import com.uppermoon.touristaapp.data.network.response.LoginResponse
-import com.uppermoon.touristaapp.data.network.response.RegisterResponse
+import com.uppermoon.touristaapp.data.network.response.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
@@ -29,7 +26,7 @@ interface ApiService {
     @GET("users/{id}")
     suspend fun getUsersById(
         @Header("Authorization") token: String,
-        @Path("id") id: String
+        @Path("id") id: Int
     ): DetailUserResponse
 
     @Multipart
@@ -37,14 +34,24 @@ interface ApiService {
     suspend fun createProfile(
         @Part file: MultipartBody.Part,
         @Field("name") name: RequestBody,
+        @Field("age") age: RequestBody,
         @Field("phone_number") phoneNumber: RequestBody,
         @Field("address") address: RequestBody,
-        @Field("user_lat") lat: RequestBody,
-        @Field("user_lon") lon: RequestBody,
+        @Field("user_lat") lat: Int,
+        @Field("user_lon") lon: Int,
     ): DetailUserResponse
 
 //    Method for destination
 
-    @GET("destination")
+    @GET("/destination")
     suspend fun getPopularDestination(): DestinationResponse
+
+    @FormUrlEncoded
+    @POST("recommendContentBased")
+    suspend fun userRecommendation(
+        @Field("user_id") id: Int,
+        @Field("category") category: String,
+        @Field("city") city: String,
+        @Field("price") price: Int
+    ): RecommendationContentResponse
 }

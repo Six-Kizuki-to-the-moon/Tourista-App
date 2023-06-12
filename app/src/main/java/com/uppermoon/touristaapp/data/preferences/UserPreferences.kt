@@ -14,6 +14,7 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
     fun getToken(): Flow<User> {
         return dataStore.data.map {
             User(
+                1,
                 it[TOKEN] ?: "token"
             )
         }

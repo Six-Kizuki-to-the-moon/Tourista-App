@@ -2,7 +2,9 @@ package com.uppermoon.touristaapp.data.network.response
 
 import com.google.gson.annotations.SerializedName
 
-data class DestinationResponse(
+class DestinationResponse : ArrayList<DestinationResponseItem>()
+
+data class DestinationResponseItem(
 
 	@field:SerializedName("name_wisata")
 	val nameWisata: String,
@@ -26,7 +28,7 @@ data class DestinationResponse(
 	val descriptionWisata: String,
 
 	@field:SerializedName("rating")
-	val rating: Int,
+	val rating: Float,
 
 	@field:SerializedName("destination_lat")
 	val destinationLat: Any,

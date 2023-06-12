@@ -11,7 +11,9 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.uppermoon.touristaapp.R
+import com.uppermoon.touristaapp.data.DestinationRepository
 import com.uppermoon.touristaapp.data.UserResult
+import com.uppermoon.touristaapp.data.network.api.ApiConfig
 import com.uppermoon.touristaapp.data.preferences.UserPreferences
 import com.uppermoon.touristaapp.data.preferences.ViewModelFactory
 import com.uppermoon.touristaapp.databinding.ActivityRegisterBinding
@@ -21,6 +23,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var registerViewModel: RegisterViewModel
+    private lateinit var destinationRepository: DestinationRepository
 
     private lateinit var username: String
     private lateinit var email: String
@@ -33,13 +36,16 @@ class RegisterActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+        val apiService = ApiConfig.getApiService()
+        destinationRepository = DestinationRepository.getInstance(apiService)
+
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val btnRegister = binding.btnRegister
 
         val pref = UserPreferences.getInstance(dataStore)
-        val factory = ViewModelFactory.getInstance(this, pref)
+        val factory = ViewModelFactory.getInstance(this, destinationRepository, pref)
         registerViewModel = ViewModelProvider(this, factory).get(
             RegisterViewModel::class.java
         )

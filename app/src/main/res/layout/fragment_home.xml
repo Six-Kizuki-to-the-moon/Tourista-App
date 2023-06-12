@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:padding="16dp"
     tools:context=".presentation.home.HomeFragment">
 
@@ -59,24 +59,24 @@
             app:layout_constraintStart_toStartOf="@+id/tv_popular_label"
             app:layout_constraintTop_toBottomOf="@+id/tv_popular_label" />
 
-        <TextView
-            android:id="@+id/tv_near_label"
-            style="@style/Title.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/near_destination_label"
-            android:textColor="@color/neutral_800"
-            app:layout_constraintStart_toStartOf="@+id/rv_popular_item"
-            app:layout_constraintTop_toBottomOf="@+id/rv_popular_item" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_near_label"-->
+<!--            style="@style/Title.Medium"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="24dp"-->
+<!--            android:text="@string/near_destination_label"-->
+<!--            android:textColor="@color/neutral_800"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/rv_popular_item"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/rv_popular_item" />-->
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_near_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            app:layout_constraintStart_toStartOf="@+id/tv_near_label"
-            app:layout_constraintTop_toBottomOf="@+id/tv_near_label" />
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/rv_near_item"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="14dp"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/tv_near_label"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tv_near_label" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
