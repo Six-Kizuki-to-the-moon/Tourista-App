@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="4.3"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_review"
             app:layout_constraintTop_toBottomOf="@+id/tv_review" />
 
         <include
@@ -114,6 +114,35 @@
             app:layout_constraintTop_toBottomOf="@+id/include" />
 
         <TextView
+            android:id="@+id/tv_similiar_item"
+            style="@style/Title.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Another options for you"
+            android:textColor="@color/neutral_800"
+            app:layout_constraintStart_toStartOf="@id/divider2"
+            app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_similiar_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_similiar_item"
+            app:layout_constraintTop_toBottomOf="@+id/tv_similiar_item" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="24dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="@+id/rv_similiar_item"
+            app:layout_constraintStart_toStartOf="@+id/rv_similiar_item"
+            app:layout_constraintTop_toBottomOf="@+id/rv_similiar_item" />
+
+        <TextView
             android:id="@+id/tv_umkm_label"
             style="@style/Title.Medium"
             android:layout_width="wrap_content"
@@ -121,8 +150,8 @@
             android:layout_marginTop="12dp"
             android:text="@string/umkm_label"
             android:textColor="@color/neutral_800"
-            app:layout_constraintStart_toStartOf="@id/divider2"
-            app:layout_constraintTop_toBottomOf="@+id/divider2" />
+            app:layout_constraintStart_toStartOf="@id/divider3"
+            app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
         <TextView
             android:id="@+id/tv_umkm_desc"

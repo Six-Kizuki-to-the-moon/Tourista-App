@@ -3,9 +3,7 @@ package com.uppermoon.touristaapp.data
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.uppermoon.touristaapp.data.network.api.ApiService
-import com.uppermoon.touristaapp.data.network.response.DestinationResponse
-import com.uppermoon.touristaapp.data.network.response.DestinationResponseItem
-import com.uppermoon.touristaapp.data.network.response.RecommendationContentResponse
+import com.uppermoon.touristaapp.data.network.response.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -30,6 +28,28 @@ class DestinationRepository(private val apiService: ApiService) {
         try {
             val userRecommendationResponse = apiService.userRecommendation(id, category, city, price)
             emit(DestinationResult.Success(userRecommendationResponse))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(DestinationResult.Error(e.toString()))
+        }
+    }
+
+    fun postSimiliarItem(destinatonName: String): Flow<DestinationResult<List<RecommendationsItem>>> = flow {
+        emit(DestinationResult.Loading)
+        try {
+            val similiarItemResponse = apiService.similiarItem(destinatonName)
+            emit(DestinationResult.Success(similiarItemResponse))
+        } catch (e: Exception){
+            e.printStackTrace()
+            emit(DestinationResult.Error(e.toString()))
+        }
+    }
+
+    fun getTripDetail(id: Int): LiveData<DestinationResult<TripRecommendationResponse>> = liveData {
+        emit(DestinationResult.Loading)
+        try {
+            val tripRecommendationResponse = apiService.getTripDetail(id)
+            emit(DestinationResult.Success(tripRecommendationResponse))
         } catch (e: Exception) {
             e.printStackTrace()
             emit(DestinationResult.Error(e.toString()))

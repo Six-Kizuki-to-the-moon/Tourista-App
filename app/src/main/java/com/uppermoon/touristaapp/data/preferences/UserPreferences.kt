@@ -14,20 +14,15 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
     fun getToken(): Flow<User> {
         return dataStore.data.map {
             User(
-                1,
+                it[USERNAME] ?: "username",
                 it[TOKEN] ?: "token"
             )
         }
     }
 
-    suspend fun isLoggedIn(): Flow<Boolean> {
-        return dataStore.data.map { preferences ->
-            preferences[LOGGED_IN] ?: false
-        }
-    }
-
     suspend fun saveToken(user: User) {
         dataStore.edit { preferences ->
+            preferences[USERNAME] = user.username
             preferences[TOKEN] = user.token
         }
     }
@@ -39,8 +34,9 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
     }
 
     companion object {
+        private val USERNAME = stringPreferencesKey("username")
         private val TOKEN = stringPreferencesKey("token")
-        private val LOGGED_IN = booleanPreferencesKey("false")
+
 
         @Volatile
         private var INSTANCE: UserPreferences? = null

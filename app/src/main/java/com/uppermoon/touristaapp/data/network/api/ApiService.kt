@@ -23,22 +23,26 @@ interface ApiService {
         @Field("password") password: String
     ): LoginResponse
 
-    @GET("users/{id}")
-    suspend fun getUsersById(
+    @GET("auth/token")
+    suspend fun refreshToken(): RefreshTokenResponse
+
+    @GET("users/{username}")
+    suspend fun getUsersByUsername(
         @Header("Authorization") token: String,
-        @Path("id") id: Int
+        @Path("username") username: String
     ): DetailUserResponse
 
     @Multipart
     @POST("users/createProfile")
     suspend fun createProfile(
-        @Part file: MultipartBody.Part,
-        @Field("name") name: RequestBody,
-        @Field("age") age: RequestBody,
-        @Field("phone_number") phoneNumber: RequestBody,
-        @Field("address") address: RequestBody,
-        @Field("user_lat") lat: Int,
-        @Field("user_lon") lon: Int,
+        @Header("Authorization") token: String,
+        @Part image: MultipartBody.Part,
+        @Part("name") name: RequestBody,
+        @Part("age") age: RequestBody,
+        @Part("phone_number") phoneNumber: RequestBody,
+        @Part("address") address: RequestBody,
+        @Part("user_lat") lat: RequestBody,
+        @Part("user_lon") lon: RequestBody,
     ): DetailUserResponse
 
 //    Method for destination
@@ -47,11 +51,22 @@ interface ApiService {
     suspend fun getPopularDestination(): DestinationResponse
 
     @FormUrlEncoded
-    @POST("recommendContentBased")
+    @POST("/recommendContentBased")
     suspend fun userRecommendation(
         @Field("user_id") id: Int,
         @Field("category") category: String,
         @Field("city") city: String,
         @Field("price") price: Int
     ): RecommendationContentResponse
+
+    @GET("/trip/detail/{id}")
+    suspend fun getTripDetail(
+        @Path("id") id: Int
+    ): TripRecommendationResponse
+
+    @FormUrlEncoded
+    @POST("recommendSimilarItem")
+    suspend fun similiarItem(
+        @Field("destination_name") destinationName: String
+    ): RecommendationResponse
 }

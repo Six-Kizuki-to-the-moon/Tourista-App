@@ -20,14 +20,6 @@ class ExploreViewModel(
         return userPreferences.getToken().asLiveData()
     }
 
-    fun saveToken(user: User) {
-        viewModelScope.launch {
-            userPreferences.saveToken(user)
-        }
-    }
-
-    fun getUserById(token: String, id: Int) = userRepository.getUserById(token,id)
-
     fun postUserRecommendation(id: Int, city: String, category: String, price: Int) =
         destinationRepository.postUserRecommendation(id, city, category, price)
 }

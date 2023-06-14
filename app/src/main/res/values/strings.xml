@@ -30,7 +30,7 @@
     <string name="destination_location">Destination Location</string>
     <string name="destination_decription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consequat ex. Nullam elit libero, commodo sit amet aliquet sit amet, vulputate eget massa. Praesent consectetur lorem ac odio viverra ullamcorper.</string>
     <!--    home fragment-->
-    <string name="user_greeting">Hi %1$s,</string>
+    <string name="user_greeting">Hi,</string>
     <string name="home_greeting">Where are you planning to go today?</string>
     <string name="search_hint">Search</string>
     <string name="popular_destination_label">Popular Destination</string>
@@ -113,6 +113,25 @@
     <string name="age_label">Age</string>
     <string name="phone_number_label">Phone number</string>
     <string name="address_label">Address</string>
+    <string name="trip_type">Trip type</string>
 
+<!--    dummy umkm-->
+    <string-array name="umkm_name">
+        <item>Toko Pak Sabar</item>
+        <item>Soto Pak Cholili</item>
+        <item>Warung Bu Mala</item>
+    </string-array>
+
+    <string-array name="umkm_owner">
+        <item>Pak Sabar</item>
+        <item>Pak Cholili</item>
+        <item>Bu Mala</item>
+    </string-array>
+
+    <string-array name="umkm_photo">
+        <item>https://cdn-image.hipwee.com/wp-content/uploads/2021/07/hipwee-Untitled-design-14.png</item>
+        <item>https://salimahcatering.my.id/wp-content/uploads/2020/02/Soto-Ayam-P-Cholili.png</item>
+        <item></item>
+    </string-array>
 
 </resources>

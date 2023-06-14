@@ -17,19 +17,17 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
-import com.google.android.material.snackbar.Snackbar
 import com.uppermoon.touristaapp.data.DestinationRepository
 import com.uppermoon.touristaapp.data.network.api.ApiConfig
-import com.uppermoon.touristaapp.data.network.response.DestinationResponse
 import com.uppermoon.touristaapp.data.network.response.DestinationResponseItem
 import com.uppermoon.touristaapp.data.preferences.UserPreferences
 import com.uppermoon.touristaapp.data.preferences.ViewModelFactory
 import com.uppermoon.touristaapp.databinding.FragmentHomeBinding
+import com.uppermoon.touristaapp.domain.User
 import com.uppermoon.touristaapp.ui.adapter.CardDestinationAdapter
 import com.uppermoon.touristaapp.ui.adapter.ListDestinationAdapter
 
@@ -40,6 +38,10 @@ class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var destinationRepository: DestinationRepository
     private lateinit var adapter: CardDestinationAdapter
+    private lateinit var user: User
+    private lateinit var username: String
+    private lateinit var token: String
+
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var userLocation: Location? = null
@@ -62,6 +64,16 @@ class HomeFragment : Fragment() {
             HomeViewModel::class.java
         )
 
+        homeViewModel.getToken().observe(viewLifecycleOwner) {
+            user = it
+            username = user.username
+            token = user.token
+
+            binding.tvUsername.text = username
+
+            Log.d("USERNAME", username)
+            Log.d("TOKEN", token)
+        }
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
@@ -71,12 +83,12 @@ class HomeFragment : Fragment() {
         initRecyclerView()
 
         homeViewModel.listDestination.observe(viewLifecycleOwner) { items ->
-            if (items.isLoading){
+            if (items.isLoading) {
             }
-            if (items.error.isNotEmpty()){
-                Toast.makeText(requireContext(),items.error, Toast.LENGTH_SHORT).show()
+            if (items.error.isNotEmpty()) {
+                Toast.makeText(requireContext(), items.error, Toast.LENGTH_SHORT).show()
             }
-            if (items.destination.isNotEmpty()){
+            if (items.destination.isNotEmpty()) {
                 adapter.setData(items.destination)
             }
         }
@@ -85,7 +97,8 @@ class HomeFragment : Fragment() {
 
     private fun initRecyclerView() {
         adapter = CardDestinationAdapter()
-        binding.rvPopularItem.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvPopularItem.layoutManager =
+            LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvPopularItem.adapter = adapter
 
     }
@@ -122,11 +135,11 @@ class HomeFragment : Fragment() {
                     // Menggunakan koordinat lokasi pengguna untuk panggilan API
                     fetchNearbyData()
                 } else {
-                    Snackbar.make(
-                        binding.root,
-                        "Tidak dapat mengambil lokasi pengguna",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
+//                    Snackbar.make(
+//                        binding.root,
+//                        "Tidak dapat mengambil lokasi pengguna",
+//                        Snackbar.LENGTH_SHORT
+//                    ).show()
                 }
             }
         } else {

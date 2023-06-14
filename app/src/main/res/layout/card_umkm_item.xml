@@ -42,7 +42,7 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:textColor="@color/neutral_300"
-            android:text="UMKM Location"
+            android:text="UMKM Owner"
             app:layout_constraintStart_toStartOf="@+id/tv_umkm_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_umkm_name" />
     </androidx.constraintlayout.widget.ConstraintLayout>

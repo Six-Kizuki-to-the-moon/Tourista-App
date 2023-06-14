@@ -17,9 +17,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/neutral_900"
-            android:text=""
+            android:text="@string/user_greeting"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_username"
+            style="@style/Title.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="username"
+            android:textColor="@color/neutral_900"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_username_label"
+            app:layout_constraintStart_toEndOf="@+id/tv_username_label"
+            app:layout_constraintTop_toTopOf="@+id/tv_username_label" />
 
         <TextView
             android:id="@+id/tv_greeting"

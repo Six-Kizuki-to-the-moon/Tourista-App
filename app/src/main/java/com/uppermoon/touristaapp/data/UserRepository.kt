@@ -5,6 +5,7 @@ import androidx.lifecycle.liveData
 import com.uppermoon.touristaapp.data.network.api.ApiService
 import com.uppermoon.touristaapp.data.network.response.DetailUserResponse
 import com.uppermoon.touristaapp.data.network.response.LoginResponse
+import com.uppermoon.touristaapp.data.network.response.RefreshTokenResponse
 import com.uppermoon.touristaapp.data.network.response.RegisterResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -43,13 +44,24 @@ class UserRepository(private val apiService: ApiService) {
         }
     }
 
-    fun getUserById(
+    fun getRefreshToken() : LiveData<UserResult<RefreshTokenResponse>> = liveData {
+        emit(UserResult.Loading)
+        try {
+            val refreshTokenResponse = apiService.refreshToken()
+            emit(UserResult.Success(refreshTokenResponse))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(UserResult.Error(e.toString()))
+        }
+    }
+
+    fun getUserByUsername(
         token: String,
-        id: Int
+        username: String
     ): LiveData<UserResult<DetailUserResponse>> = liveData {
         emit(UserResult.Loading)
         try {
-            val getUserResponse = apiService.getUsersById(token, id)
+            val getUserResponse = apiService.getUsersByUsername("Bearer $token", username)
             emit(UserResult.Success(getUserResponse))
         } catch (e: Exception) {
             e.printStackTrace()
@@ -58,17 +70,18 @@ class UserRepository(private val apiService: ApiService) {
     }
 
     fun postCreateProfile(
+        token: String,
         imageMultipart: MultipartBody.Part,
         name: RequestBody,
         age: RequestBody,
         phoneNumber: RequestBody,
         address: RequestBody,
-        lat: Int,
-        lon: Int,
+        lat: RequestBody,
+        lon: RequestBody,
     ): LiveData<UserResult<DetailUserResponse>> = liveData {
         emit(UserResult.Loading)
         try {
-            val postUserProfile = apiService.createProfile(imageMultipart, name, age, phoneNumber, address, lat, lon)
+            val postUserProfile = apiService.createProfile("Bearer $token", imageMultipart, name, age, phoneNumber, address, lat, lon)
             emit(UserResult.Success(postUserProfile))
         } catch (e: Exception) {
             e.printStackTrace()

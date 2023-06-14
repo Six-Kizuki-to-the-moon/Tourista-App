@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.uppermoon.touristaapp.data.DestinationRepository
 import com.uppermoon.touristaapp.data.UserRepository
 import com.uppermoon.touristaapp.di.Injection
+import com.uppermoon.touristaapp.presentation.detail.DetailViewModel
 import com.uppermoon.touristaapp.presentation.explore.ExploreViewModel
 import com.uppermoon.touristaapp.presentation.home.HomeViewModel
 import com.uppermoon.touristaapp.presentation.login.LoginViewModel
@@ -30,11 +31,13 @@ class ViewModelFactory constructor(
         } else if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return LoginViewModel(userRepository, pref) as T
         } else if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-            return HomeViewModel(destinationRepository,pref) as T
+            return HomeViewModel(userRepository,destinationRepository,pref) as T
         }else if (modelClass.isAssignableFrom(ExploreViewModel::class.java)) {
             return ExploreViewModel(userRepository,destinationRepository, pref) as T
         } else if (modelClass.isAssignableFrom(ProfileViewModel::class.java)) {
-            return ProfileViewModel(userRepository,destinationRepository,pref) as T
+            return ProfileViewModel(userRepository,pref) as T
+        } else if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
+            return DetailViewModel(destinationRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

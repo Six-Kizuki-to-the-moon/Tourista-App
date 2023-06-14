@@ -38,6 +38,29 @@ class CardDestinationAdapter : RecyclerView.Adapter<CardDestinationAdapter.ViewH
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = listData[position]
         holder.bind(data)
+
+
+        holder.itemView.setOnClickListener {
+            val dataDetailDestination = DestinationResponseItem(
+                data.nameWisata,
+                data.destinationPhoto,
+                data.coordinate,
+                data.timeMinutes,
+                data.city,
+                data.price,
+                data.descriptionWisata,
+                data.rating,
+                data.destinationLat,
+                data.destinationLong,
+                data.id,
+                data.category
+            )
+            val intentDetail = Intent(holder.itemView.context, DetailActivity::class.java)
+            intentDetail.putExtra(DetailActivity.EXTRA_DETAIL, dataDetailDestination)
+            holder.itemView.context.startActivity(intentDetail)
+
+        }
+
     }
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {

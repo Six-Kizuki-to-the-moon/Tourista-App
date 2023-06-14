@@ -50,7 +50,7 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name"
+            android:hint="Name"
             app:layout_constraintStart_toStartOf="@+id/tv_name"
             app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
@@ -73,7 +73,7 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:inputType="number"
-            android:text="Age"
+            android:hint="Age"
             app:layout_constraintStart_toStartOf="@+id/tv_age"
             app:layout_constraintTop_toBottomOf="@id/tv_age" />
 
@@ -96,7 +96,7 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:inputType="number"
-            android:text="Phone number"
+            android:hint="Phone number"
             app:layout_constraintStart_toStartOf="@+id/tv_phonenumber"
             app:layout_constraintTop_toBottomOf="@id/tv_phonenumber" />
 
@@ -119,7 +119,7 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:inputType="text"
-            android:text="Address"
+            android:hint="Address"
             app:layout_constraintStart_toStartOf="@+id/tv_address"
             app:layout_constraintTop_toBottomOf="@id/tv_address" />
 

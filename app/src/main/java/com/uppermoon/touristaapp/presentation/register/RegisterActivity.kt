@@ -10,7 +10,6 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import com.uppermoon.touristaapp.R
 import com.uppermoon.touristaapp.data.DestinationRepository
 import com.uppermoon.touristaapp.data.UserResult
 import com.uppermoon.touristaapp.data.network.api.ApiConfig

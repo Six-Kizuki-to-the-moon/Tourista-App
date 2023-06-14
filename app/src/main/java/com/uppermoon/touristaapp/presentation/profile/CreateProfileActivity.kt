@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -52,9 +53,11 @@ class CreateProfileActivity : AppCompatActivity() {
     private lateinit var phoneNumberUser: RequestBody
     private lateinit var address: String
     private lateinit var addressUser: RequestBody
+    private lateinit var lat: String
+    private lateinit var latUser: RequestBody
+    private lateinit var lon: String
+    private lateinit var lonUser: RequestBody
     private lateinit var imageMultipart: MultipartBody.Part
-
-    private var getFile: File? = null
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -191,8 +194,19 @@ class CreateProfileActivity : AppCompatActivity() {
         ageUser = age.toRequestBody("text/plain".toMediaType())
         phoneNumberUser = phoneNumber.toRequestBody("text/plain".toMediaType())
         addressUser = address.toRequestBody("text/plain".toMediaType())
+        latUser = "2214.316656".toRequestBody()
+        lonUser = "-12412.4221".toRequestBody()
 
-        profileViewModel.postCreateProfile(imageMultipart,nameUser, ageUser, phoneNumberUser, addressUser, 123111, 124556).observe(this){result ->
+        Log.d("IMAGE", imageMultipart.toString())
+        Log.d("NAME", nameUser.toString())
+        Log.d("AGE", ageUser.toString())
+        Log.d("PHONE NUMBER", phoneNumberUser.toString())
+        Log.d("ADDRESS", addressUser.toString())
+        Log.d("LAT", latUser.toString())
+        Log.d("LON", lonUser.toString())
+        Log.d("token", token)
+
+        profileViewModel.postCreateProfile(token, imageMultipart,nameUser, ageUser, phoneNumberUser, addressUser, latUser, latUser).observe(this){result ->
             when(result) {
                 is UserResult.Success -> {
                     Toast.makeText(this, "Profile Created",Toast.LENGTH_SHORT).show()
@@ -202,7 +216,7 @@ class CreateProfileActivity : AppCompatActivity() {
                     showLoading(true)
                 }
                 is UserResult.Error -> {
-                    Toast.makeText(this, "Profile Created Failed.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
                     showLoading(false)
                 }
             }

@@ -14,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.uppermoon.touristaapp.data.DestinationRepository
 import com.uppermoon.touristaapp.data.UserResult
 import com.uppermoon.touristaapp.data.network.api.ApiConfig
-import com.uppermoon.touristaapp.data.network.api.ApiService
 import com.uppermoon.touristaapp.data.preferences.UserPreferences
 import com.uppermoon.touristaapp.data.preferences.ViewModelFactory
 import com.uppermoon.touristaapp.databinding.ActivityLoginBinding
@@ -30,6 +29,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var destinationRepository: DestinationRepository
     private lateinit var user: User
+    private lateinit var username: String
+    private lateinit var token: String
 
     private lateinit var email: String
     private lateinit var password: String
@@ -51,7 +52,8 @@ class LoginActivity : AppCompatActivity() {
         )
 
         loginViewModel.getToken().observe(this) {
-            if (it.token != "token") {
+            if (it.token != "token" && it.username.isNotEmpty()) {
+                username = it.username
                 val intentMain = Intent(this, MainActivity::class.java)
                 startActivity(intentMain)
                 finish()
@@ -78,7 +80,7 @@ class LoginActivity : AppCompatActivity() {
                         when (result) {
                             is UserResult.Success -> {
                                 showLoading(false)
-                                user = User(1, result.data.accessToken)
+                                user = User(username = result.data.username, token = result.data.accessToken)
                                 loginViewModel.saveToken(user)
                                 Toast.makeText(this, result.data.msg, Toast.LENGTH_SHORT).show()
                                 val intentMain = Intent(this, MainActivity::class.java)

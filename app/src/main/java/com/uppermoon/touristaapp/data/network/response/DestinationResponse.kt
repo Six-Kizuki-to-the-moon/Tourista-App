@@ -1,9 +1,12 @@
 package com.uppermoon.touristaapp.data.network.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 class DestinationResponse : ArrayList<DestinationResponseItem>()
 
+@Parcelize
 data class DestinationResponseItem(
 
 	@field:SerializedName("name_wisata")
@@ -31,14 +34,14 @@ data class DestinationResponseItem(
 	val rating: Float,
 
 	@field:SerializedName("destination_lat")
-	val destinationLat: Any,
+	val destinationLat: String,
 
 	@field:SerializedName("destination_long")
-	val destinationLong: Any,
+	val destinationLong: String,
 
 	@field:SerializedName("id")
 	val id: Int,
 
 	@field:SerializedName("category")
 	val category: String
-)
+): Parcelable
