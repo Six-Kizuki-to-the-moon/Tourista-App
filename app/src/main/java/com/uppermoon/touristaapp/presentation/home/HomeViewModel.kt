@@ -29,15 +29,15 @@ class HomeViewModel(
 
     fun getPopularDestination() {
         destinationRepository.getPopularDestination().onEach {
-            when(it){
+            when (it) {
                 is DestinationResult.Success -> {
                     _listDestination.value = HomeState(destination = it.data)
                 }
-                is DestinationResult.Loading ->{
+                is DestinationResult.Loading -> {
                     _listDestination.value = HomeState(isLoading = true)
                 }
                 is DestinationResult.Error -> {
-                    _listDestination.value  = HomeState(error = it.error)
+                    _listDestination.value = HomeState(error = it.error)
 
 
                 }
@@ -45,4 +45,5 @@ class HomeViewModel(
         }.launchIn(viewModelScope)
     }
 
+    fun nearYouDestination(id: Int, userLat: Float, userLon: Float) = destinationRepository.postDestinationNearYou(id, userLat, userLon)
 }

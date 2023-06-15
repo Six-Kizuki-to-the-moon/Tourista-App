@@ -53,6 +53,12 @@
     <string name="logout_text">Log Out</string>
     <string name="review_label">Review</string>
     <string name="umkm_label">Business around you</string>
+    <string name="name_label">Name</string>
+    <string name="age_label">Age</string>
+    <string name="phone_number_label">Phone number</string>
+    <string name="address_label">Address</string>
+    <string name="trip_type">Trip type</string>
+
     <!--    dummy data-->
     <string-array name="place_name">
         <item>Braga</item>
@@ -87,33 +93,21 @@
     </string-array>
 
     <!--    dummy review-->
-    <string-array name="username">
+    <string-array name="review_username">
         <item>Makima</item>
-        <item>Makima</item>
-        <item>Makima</item>
+        <item>Ujikkk</item>
+        <item>Ujik_ganteng</item>
     </string-array>
     <string-array name="user_rating">
         <item>4.5</item>
         <item>4.3</item>
         <item>3.5</item>
     </string-array>
-    <string-array name="photo_url">
-        <item>https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Jl_Braga_Street_Sign_in_Bandung.jpg/330px-Jl_Braga_Street_Sign_in_Bandung.jpg</item>
-        <item>https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Jl_Braga_Street_Sign_in_Bandung.jpg/330px-Jl_Braga_Street_Sign_in_Bandung.jpg</item>
-        <item>https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Jl_Braga_Street_Sign_in_Bandung.jpg/330px-Jl_Braga_Street_Sign_in_Bandung.jpg</item>
+    <string-array name="review_photo_username">
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
     </string-array>
-    <string-array name="review">
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consequat ex. Nullam elit libero, commodo sit amet aliquet sit amet, vulputate eget massa. Praesent consectetur lorem ac odio viverra ullamcorper.</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consequat ex. Nullam elit libero, commodo sit amet aliquet sit amet, vulputate eget massa. Praesent consectetur lorem ac odio viverra ullamcorper.</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consequat ex. Nullam elit libero, commodo sit amet aliquet sit amet, vulputate eget massa. Praesent consectetur lorem ac odio viverra ullamcorper.</item>
-    </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="name_label">Name</string>
-    <string name="age_label">Age</string>
-    <string name="phone_number_label">Phone number</string>
-    <string name="address_label">Address</string>
-    <string name="trip_type">Trip type</string>
 
 <!--    dummy umkm-->
     <string-array name="umkm_name">
@@ -131,7 +125,63 @@
     <string-array name="umkm_photo">
         <item>https://cdn-image.hipwee.com/wp-content/uploads/2021/07/hipwee-Untitled-design-14.png</item>
         <item>https://salimahcatering.my.id/wp-content/uploads/2020/02/Soto-Ayam-P-Cholili.png</item>
-        <item></item>
+        <item>https://lh3.googleusercontent.com/p/AF1QipNt-sKHwf89vn4S8X3aB8EY_ZtxmdBvIqQKKW0N=s1360-w1360-h1020</item>
     </string-array>
 
+<!--    dummy similiar item (pacenongan)-->
+    <string-array name="similiar_name">
+        <item>Kawasan Kuliner BSM</item>
+        <item>Wisata Alam Wana Wisata Penggaron</item>
+        <item>Kampung Wisata Kadipaten</item>
+        <item>Desa Wisata Gamplong</item>
+    </string-array>
+
+    <string-array name="similiar_city">
+        <item>Jakarta</item>
+        <item>Semarang</item>
+        <item>Yogyakarta</item>
+        <item>Yogyakarta</item>
+    </string-array>
+
+    <string-array name="similiar_photo">
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+    </string-array>
+
+<!--    dummy recommend result (1, taman hiburan, jakarta, 50000)-->
+    <string-array name="recresult_name">
+        <item>Wisata Agro Edukatif Istana Susu Cibugary</item>
+        <item>Jakarta Planetarium</item>
+        <item>Taman Menteng</item>
+        <item>Jakarta Planetarium</item>
+        <item>Hutan Kota Srengseng</item>
+        <item>Taman Menteng</item>
+        <item>Wisata Agro Edukatif Istana Susu Cibugary</item>
+        <item>Hutan Kota Srengseng</item>
+        <item>Taman Menteng</item>
+    </string-array>
+    <string-array name="recresult_type">
+        <item>Gold</item>
+        <item>Gold</item>
+        <item>Gold</item>
+        <item>Silver</item>
+        <item>Silver</item>
+        <item>Silver</item>
+        <item>Bronze</item>
+        <item>Bronze</item>
+        <item>Bronze</item>
+    </string-array>
+    <string-array name="recresult_photo">
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+    </string-array>
 </resources>

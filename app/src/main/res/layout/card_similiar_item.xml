@@ -11,7 +11,7 @@
 
         <ImageView
             android:id="@+id/iv_destination"
-            android:layout_width="129dp"
+            android:layout_width="175dp"
             android:layout_height="150dp"
             android:paddingEnd="8dp"
             android:scaleType="fitXY"

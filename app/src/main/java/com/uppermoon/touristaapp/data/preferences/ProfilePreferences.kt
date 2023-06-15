@@ -13,7 +13,7 @@ class ProfilePreferences private constructor(private val dataStore: DataStore<Pr
     fun getProfile(): Flow<Profile> {
         return dataStore.data.map {
             Profile(
-                it[ID] ?: 1,
+                it[ID] ?: 0,
             it[NAME] ?: ""
             )
         }
@@ -33,7 +33,7 @@ class ProfilePreferences private constructor(private val dataStore: DataStore<Pr
     }
 
     companion object {
-        private val ID = intPreferencesKey("1")
+        private val ID = intPreferencesKey("0")
         private val NAME = stringPreferencesKey("name")
 
         @Volatile

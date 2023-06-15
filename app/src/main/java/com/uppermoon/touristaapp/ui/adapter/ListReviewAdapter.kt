@@ -3,6 +3,7 @@ package com.uppermoon.touristaapp.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.uppermoon.touristaapp.data.dummy.Review
 import com.uppermoon.touristaapp.databinding.ListReviewItemBinding
 
@@ -20,7 +21,9 @@ class ListReviewAdapter(private var listReview: ArrayList<Review>) :
             reviewItemBinding.apply {
                 tvUsernameLabel.text = dataReview.username
                 tvRating.text = dataReview.rating.toString()
-                tvReview.text = dataReview.review
+                Glide.with(itemView.context)
+                    .load(dataReview.photoUrl)
+                    .into(ivUser)
             }
         }
     }

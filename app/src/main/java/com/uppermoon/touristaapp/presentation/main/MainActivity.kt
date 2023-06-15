@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.navigation_home,
                 R.id.navigation_explore,
-                R.id.navigation_notifications,
                 R.id.navigation_profile
             )
         )

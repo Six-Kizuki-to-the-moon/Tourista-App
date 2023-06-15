@@ -1,6 +1,7 @@
 package com.uppermoon.touristaapp.presentation.detail
 
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.uppermoon.touristaapp.R
 import com.uppermoon.touristaapp.data.DestinationRepository
-import com.uppermoon.touristaapp.data.DestinationResult
+import com.uppermoon.touristaapp.data.dummy.Similiar
 import com.uppermoon.touristaapp.data.dummy.Umkm
 import com.uppermoon.touristaapp.data.network.api.ApiConfig
 import com.uppermoon.touristaapp.data.network.api.ApiService
@@ -23,6 +24,8 @@ import com.uppermoon.touristaapp.data.network.response.DestinationResponseItem
 import com.uppermoon.touristaapp.data.preferences.UserPreferences
 import com.uppermoon.touristaapp.data.preferences.ViewModelFactory
 import com.uppermoon.touristaapp.databinding.ActivityDetailBinding
+import com.uppermoon.touristaapp.presentation.review.ReviewActivity
+import com.uppermoon.touristaapp.ui.adapter.CardDummySimiliarItemAdapter
 import com.uppermoon.touristaapp.ui.adapter.CardSimiliarItemAdapter
 import com.uppermoon.touristaapp.ui.adapter.CardUmkmAdapter
 
@@ -32,11 +35,12 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private lateinit var detailViewModel: DetailViewModel
     private lateinit var destinationRepository: DestinationRepository
-    private lateinit var moduleApiService: ApiService
     private lateinit var adapter : CardSimiliarItemAdapter
 
     private lateinit var rvUmkm: RecyclerView
+    private lateinit var rvSimiliar: RecyclerView
     private val listUmkm = ArrayList<Umkm>()
+    private val listSimiliar = ArrayList<Similiar>()
 
     private lateinit var destinationName: String
 
@@ -46,8 +50,8 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        moduleApiService = ApiConfig.getApiService2()
-        destinationRepository = DestinationRepository.getInstance(moduleApiService)
+        val apiService = ApiConfig.getApiService()
+        destinationRepository = DestinationRepository.getInstance(apiService)
 
         val pref = UserPreferences.getInstance(this.dataStore)
         val factory = ViewModelFactory.getInstance(this, destinationRepository, pref)
@@ -62,30 +66,62 @@ class DetailActivity : AppCompatActivity() {
             intent.getParcelableExtra(EXTRA_DETAIL)
         }
 
+        val btnToReview = binding.btnGotoReview
+
         rvUmkm = binding.rvUmkm
+        rvSimiliar = binding.rvSimiliarItem
         rvUmkm.setHasFixedSize(true)
+        rvSimiliar.setHasFixedSize(true)
 
         listUmkm.addAll(getListUmkm())
+        listSimiliar.addAll(getListSimiliar())
+        showRecyclerSimiliarCard()
         showRecyclerUmkmCard()
 
         if (detailDestination != null) {
             setDetailDestination(detailDestination)
-            destinationName = detailDestination.city
+            destinationName = detailDestination.nameWisata
+            Log.d("destination", destinationName)
 
-            initRecyclerViewSimiliar()
+            detailViewModel.postSimiliarItem(destinationName)
 
-            detailViewModel.listSimiliar.observe(this) { items ->
-                if (items.isLoading) {
-                }
-                if (items.error.isNotEmpty()) {
-                    Toast.makeText(this, items.error, Toast.LENGTH_SHORT).show()
-                }
-                if (items.similiar.isNotEmpty()) {
-                    adapter.setData(items.similiar)
-                    Log.d("data", items.similiar.toString())
-                }
-            }
+//            initRecyclerViewSimiliar()
+//            detailViewModel.listSimiliar.observe(this){items ->
+//                if (items.isLoading) {
+//                }
+//                if (items.error.isNotEmpty()) {
+//                    Toast.makeText(this, items.error, Toast.LENGTH_SHORT).show()
+//                }
+//                if (items.similiar.isNotEmpty()) {
+//                    adapter.setData(items.similiar)
+//                }
+//            }
         }
+
+        btnToReview.setOnClickListener {
+            val intentReview = Intent(this, ReviewActivity::class.java)
+            startActivity(intentReview)
+        }
+    }
+
+    private fun getListSimiliar(): List<Similiar> {
+        val dataSimiliarName = resources.getStringArray(R.array.similiar_name)
+        val dataSimiliarCity = resources.getStringArray(R.array.similiar_city)
+        val dataSimiliarPhoto = resources.getStringArray(R.array.similiar_photo)
+
+        val list = ArrayList<Similiar>()
+
+        for (i in dataSimiliarName.indices){
+            val simi = Similiar(dataSimiliarName[i], dataSimiliarCity[i], dataSimiliarPhoto[i])
+            list.add(simi)
+        }
+        return list
+    }
+
+    private fun showRecyclerSimiliarCard() {
+        rvSimiliar.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        val cardSimiliarAdapter = CardDummySimiliarItemAdapter(listSimiliar)
+        rvSimiliar.adapter = cardSimiliarAdapter
     }
 
     private fun getListUmkm(): List<Umkm> {
@@ -108,13 +144,13 @@ class DetailActivity : AppCompatActivity() {
         rvUmkm.adapter = cardUmkmAdapter
     }
 
-    private fun initRecyclerViewSimiliar() {
-        adapter = CardSimiliarItemAdapter()
-        binding.rvSimiliarItem.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvSimiliarItem.adapter = adapter
+//    private fun initRecyclerViewSimiliar() {
+//        adapter = CardSimiliarItemAdapter()
+//        binding.rvSimiliarItem.layoutManager =
+//            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+//        binding.rvSimiliarItem.adapter = adapter
+//    }
 
-    }
     private fun setDetailDestination(detailDestination: DestinationResponseItem) {
         with(binding) {
             tvDestinationName.text = detailDestination.nameWisata

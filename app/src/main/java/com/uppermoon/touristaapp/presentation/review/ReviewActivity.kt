@@ -24,23 +24,22 @@ class ReviewActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         rvReview = binding.rvReview
+        rvReview.setHasFixedSize(true)
         list.addAll(getReviewList())
         showRecyclerList()
-
     }
 
     private fun showRecyclerList() {
         rvReview.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            LinearLayoutManager(this)
         val listReviewAdapter = ListReviewAdapter(list)
         rvReview.adapter = listReviewAdapter
     }
 
     private fun getReviewList(): ArrayList<Review> {
-        val dataUsername = resources.getStringArray(R.array.username)
+        val dataUsername = resources.getStringArray(R.array.review_username)
         val dataRating = resources.getStringArray(R.array.user_rating)
-        val dataPhoto = resources.getStringArray(R.array.photo_url)
-        val dataReview = resources.getStringArray(R.array.review)
+        val dataPhoto = resources.getStringArray(R.array.review_photo_username)
         val listReview = ArrayList<Review>()
 
         for (i in dataUsername.indices) {
@@ -48,7 +47,6 @@ class ReviewActivity : AppCompatActivity() {
                 dataUsername[i],
                 dataRating[i],
                 dataPhoto[i],
-                dataReview[i]
             )
             listReview.add(review)
         }

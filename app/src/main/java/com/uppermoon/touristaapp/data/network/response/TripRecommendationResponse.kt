@@ -14,6 +14,12 @@ data class UserProfile(
 	val name: String
 )
 
+data class Trip(
+
+	@field:SerializedName("trip_name")
+	val tripName: String
+)
+
 data class TripRecommendationResponseItem(
 
 	@field:SerializedName("name_wisata")
@@ -42,10 +48,4 @@ data class TripRecommendationResponseItem(
 
 	@field:SerializedName("updatedAt")
 	val updatedAt: Any
-)
-
-data class Trip(
-
-	@field:SerializedName("trip_name")
-	val tripName: String
 )

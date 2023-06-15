@@ -8,6 +8,7 @@
     tools:context=".presentation.recommendation.RecommendPacketActivity">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_recommend_result"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"

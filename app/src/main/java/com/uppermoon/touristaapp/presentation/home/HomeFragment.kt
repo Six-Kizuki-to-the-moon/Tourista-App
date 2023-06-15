@@ -22,7 +22,9 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
 import com.uppermoon.touristaapp.data.DestinationRepository
+import com.uppermoon.touristaapp.data.DestinationResult
 import com.uppermoon.touristaapp.data.network.api.ApiConfig
+import com.uppermoon.touristaapp.data.network.api.ApiService
 import com.uppermoon.touristaapp.data.network.response.DestinationResponseItem
 import com.uppermoon.touristaapp.data.preferences.UserPreferences
 import com.uppermoon.touristaapp.data.preferences.ViewModelFactory
@@ -31,13 +33,13 @@ import com.uppermoon.touristaapp.domain.User
 import com.uppermoon.touristaapp.ui.adapter.CardDestinationAdapter
 import com.uppermoon.touristaapp.ui.adapter.ListDestinationAdapter
 
-
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var destinationRepository: DestinationRepository
     private lateinit var adapter: CardDestinationAdapter
+    private lateinit var secAdapter: ListDestinationAdapter
     private lateinit var user: User
     private lateinit var username: String
     private lateinit var token: String
@@ -92,6 +94,8 @@ class HomeFragment : Fragment() {
                 adapter.setData(items.destination)
             }
         }
+
+        fetchNearbyData()
         return binding.root
     }
 
@@ -100,7 +104,6 @@ class HomeFragment : Fragment() {
         binding.rvPopularItem.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvPopularItem.adapter = adapter
-
     }
 
 
@@ -153,13 +156,20 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchNearbyData() {
-        // Panggil API dengan menggunakan userLocation untuk mendapatkan data terdekat
-        // Implementasikan metode untuk memanggil API dan menampilkan responsnya di RecyclerView
-    }
-
-    private fun setUserData(items: List<DestinationResponseItem>) {
-        adapter.setData(items)
-        binding.rvPopularItem.adapter = adapter
+        homeViewModel.nearYouDestination(1, -7.8120681F, 110.346218F)
+            .observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is DestinationResult.Success -> {
+                       secAdapter = ListDestinationAdapter(result.data)
+                        binding.rvNearItem.layoutManager = LinearLayoutManager(requireActivity())
+                        binding.rvNearItem.adapter = secAdapter
+                    }
+                    is DestinationResult.Loading -> {}
+                    is DestinationResult.Error -> {
+//                        Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
     }
 
     companion object {

@@ -47,11 +47,12 @@ class ProfileViewModel(
         username: String
     ) = userRepository.getUserByUsername(token, username)
 
-//    fun saveProfile(profile: Profile){
+//    fun saveProfile(id: String){
 //        viewModelScope.launch {
 //            profilePreferences.saveProfile(profile)
 //        }
 //    }
+
     fun clearToken() {
         viewModelScope.launch {
             userPreferences.clearToken()

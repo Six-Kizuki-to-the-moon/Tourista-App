@@ -18,12 +18,6 @@
         tools:layout="@layout/fragment_explore" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.uppermoon.touristaapp.presentation.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
-
-    <fragment
         android:id="@+id/navigation_profile"
         android:name="com.uppermoon.touristaapp.presentation.profile.ProfileFragment"
         android:label="@string/title_profile"

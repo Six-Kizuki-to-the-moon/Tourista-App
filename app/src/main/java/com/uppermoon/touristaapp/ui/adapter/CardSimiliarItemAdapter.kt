@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.uppermoon.touristaapp.R
 import com.uppermoon.touristaapp.data.network.response.RecommendationsItem
 import com.uppermoon.touristaapp.databinding.CardDestinationItemBinding
+import com.uppermoon.touristaapp.databinding.CardSimiliarItemBinding
 
 class CardSimiliarItemAdapter : RecyclerView.Adapter<CardSimiliarItemAdapter.ViewHolder>(){
 
@@ -27,7 +28,7 @@ class CardSimiliarItemAdapter : RecyclerView.Adapter<CardSimiliarItemAdapter.Vie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardSimiliarItemAdapter.ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.card_destination_item, parent, false))
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.card_similiar_item, parent, false))
     }
 
     override fun getItemCount(): Int = listSimiliar.size
@@ -39,13 +40,13 @@ class CardSimiliarItemAdapter : RecyclerView.Adapter<CardSimiliarItemAdapter.Vie
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 
-        private val binding = CardDestinationItemBinding.bind(itemView)
+        private val binding = CardSimiliarItemBinding.bind(itemView)
 
         fun bind(data: RecommendationsItem) {
             with(binding){
-                Glide.with(itemView.context)
-                    .load(data.destinationPhoto)
-                    .into(ivDestination)
+//                Glide.with(itemView.context)
+//                    .load(data.destinationPhoto)
+//                    .into(ivDestination)
                 tvDestinationName.text = data.placeName
                 tvDestinationLocation.text = data.city
             }

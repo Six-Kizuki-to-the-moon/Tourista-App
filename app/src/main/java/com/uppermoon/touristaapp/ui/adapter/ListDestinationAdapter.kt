@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.uppermoon.touristaapp.data.dummy.Destination
+import com.uppermoon.touristaapp.data.network.response.RecommendationsItem
 import com.uppermoon.touristaapp.databinding.CardDestinationItemBinding
 import com.uppermoon.touristaapp.databinding.ListDestinationItemBinding
 import com.uppermoon.touristaapp.presentation.detail.DetailActivity
 
-class ListDestinationAdapter(private var listDestination: ArrayList<Destination>) :
+class ListDestinationAdapter(private var listDestination: List<RecommendationsItem>) :
     RecyclerView.Adapter<ListDestinationAdapter.ListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -23,18 +24,18 @@ class ListDestinationAdapter(private var listDestination: ArrayList<Destination>
         val dataDestination = listDestination[position]
         viewHolder.apply {
             destinationItemBinding.apply {
-                tvDestinationName.text = dataDestination.name
+                tvDestinationName.text = dataDestination.placeName
                 tvDestinationLocation.text = dataDestination.city
-                ivDestination.load(dataDestination.photo)
-                tvDestinationDescription.text = dataDestination.description
+                ivDestination.load(dataDestination.destinationPhoto)
+                tvDestinationDescription.text = dataDestination.descriptionWisata
             }
 
             itemView.setOnClickListener {
                 val data = Destination(
-                    dataDestination.name,
+                    dataDestination.placeName,
                     dataDestination.city,
-                    dataDestination.description,
-                    dataDestination.photo
+                    dataDestination.descriptionWisata,
+                    dataDestination.destinationPhoto
                 )
                 val intentDetail = Intent(itemView.context, DetailActivity::class.java)
                 intentDetail.putExtra(DetailActivity.EXTRA_DETAIL, data)

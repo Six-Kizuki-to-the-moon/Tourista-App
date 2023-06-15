@@ -23,9 +23,6 @@ interface ApiService {
         @Field("password") password: String
     ): LoginResponse
 
-    @GET("auth/token")
-    suspend fun refreshToken(): RefreshTokenResponse
-
     @GET("users/{username}")
     suspend fun getUsersByUsername(
         @Header("Authorization") token: String,
@@ -51,7 +48,15 @@ interface ApiService {
     suspend fun getPopularDestination(): DestinationResponse
 
     @FormUrlEncoded
-    @POST("/recommendContentBased")
+    @POST("ml/recommendCollab")
+    suspend fun nearYou(
+        @Field("user_id") id: Int,
+        @Field("user_lat") userLat: Float,
+        @Field("user_lon") userLon: Float,
+    ): SimiliarItemResponse
+
+    @FormUrlEncoded
+    @POST("ml/recommendContentBased")
     suspend fun userRecommendation(
         @Field("user_id") id: Int,
         @Field("category") category: String,
@@ -59,13 +64,13 @@ interface ApiService {
         @Field("price") price: Int
     ): RecommendationContentResponse
 
-    @GET("/trip/detail/{id}")
+    @GET("trip/detail/{id}")
     suspend fun getTripDetail(
-        @Path("id") id: Int
+        @Path("user_id") id: Int
     ): TripRecommendationResponse
 
     @FormUrlEncoded
-    @POST("recommendSimilarItem")
+    @POST("ml/recommendSimilarItem")
     suspend fun similiarItem(
         @Field("destination_name") destinationName: String
     ): RecommendationResponse

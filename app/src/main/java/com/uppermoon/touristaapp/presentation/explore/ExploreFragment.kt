@@ -47,12 +47,12 @@ class ExploreFragment : Fragment() {
             ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, cityOptions)
         binding.spinnerCity.adapter = cityAdapter
 
-        val categoryOptions = arrayOf("Atraksi", "Taman Hiburan", "Petualangan")
+        val categoryOptions = arrayOf("Taman Hiburan", "Budaya", "Cagar Alam", "Bahari", "Pusat Perbelanjaan", "Tempat Ibadah")
         val categoryAdapter =
             ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categoryOptions)
         binding.spinnerCategories.adapter = categoryAdapter
 
-        val apiService = ApiConfig.getApiService2()
+        val apiService = ApiConfig.getApiService()
         destinationRepository = DestinationRepository.getInstance(apiService)
 
         val pref = UserPreferences.getInstance(requireContext().dataStore)
@@ -140,7 +140,7 @@ class ExploreFragment : Fragment() {
                         // Tampilkan indikator loading jika diperlukan
                     }
                     is DestinationResult.Error -> {
-                        Toast.makeText(requireContext(), "Upload Failed", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
                     }
                     else -> {}
                 }

@@ -4,8 +4,8 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Review(
-    val username: String,
-    val rating: String,
-    val photoUrl: String,
+data class Similiar(
+    val similiarName: String,
+    val similiarCity: String,
+    val similiarPhoto: String,
 ) : Parcelable
