@@ -50,10 +50,6 @@ class RecommendPacketActivity : AppCompatActivity() {
         rvRecresult = binding.rvRecommendResult
         rvRecresult.setHasFixedSize(true)
 
-//        recommendViewModel.listDestination.observe(this) { items ->
-//            setTripData(items)
-//        }
-
         val layoutManager = LinearLayoutManager(this)
         binding.rvRecommendResult.layoutManager = layoutManager
 
@@ -81,16 +77,4 @@ class RecommendPacketActivity : AppCompatActivity() {
         }
         return list
     }
-
-//    override fun onResume() {
-//        super.onResume()
-//        recommendViewModel.listDestination.observe(this) { items ->
-//            setTripData(items)
-//        }
-//    }
-//
-//    private fun setTripData(items: List<TripRecommendationResponseItem>) {
-//        val adapter = ListRecommendationAdapter(items)
-//        binding.rvRecommendResult.adapter = adapter
-//    }
 }

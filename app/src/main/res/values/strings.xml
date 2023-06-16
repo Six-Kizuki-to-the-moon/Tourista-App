@@ -59,37 +59,35 @@
     <string name="address_label">Address</string>
     <string name="trip_type">Trip type</string>
 
-    <!--    dummy data-->
-    <string-array name="place_name">
-        <item>Braga</item>
-        <item>Monas</item>
-        <item>Lawang Sewu</item>
-        <item>Farm House</item>
-        <item>Alun-alun Bandung</item>
+    <!--    dummy destination near you-->
+    <string-array name="near_name">
+        <item>Desa Wisata Sungai Code Jogja Kota</item>
+        <item>Tugu Pal Putih Jogja</item>
+        <item>Nol Kilometer Jl.Malioboro</item>
+        <item>Keraton Yogyakarta</item>
     </string-array>
 
-    <string-array name="place_city">
-        <item>Bandung</item>
-        <item>Jakarta</item>
-        <item>Semarang</item>
-        <item>Bandung</item>
-        <item>Bandung</item>
+    <string-array name="near_city">
+        <item>Yogyakarta</item>
+        <item>Yogyakarta</item>
+        <item>Yogyakarta</item>
+        <item>Yogyakarta</item>
+
     </string-array>
 
-    <string-array name="photo_city">
-        <item>https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Jl_Braga_Street_Sign_in_Bandung.jpg/330px-Jl_Braga_Street_Sign_in_Bandung.jpg</item>
-        <item>https://upload.wikimedia.org/wikipedia/id/thumb/b/b1/Merdeka_Square_Monas_02.jpg/360px-Merdeka_Square_Monas_02.jpg</item>
-        <item>https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Lawang_sewu.jpg/360px-Lawang_sewu.jpg</item>
-        <item>https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Jl_Braga_Street_Sign_in_Bandung.jpg/330px-Jl_Braga_Street_Sign_in_Bandung.jpg</item>
-        <item>https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Jl_Braga_Street_Sign_in_Bandung.jpg/330px-Jl_Braga_Street_Sign_in_Bandung.jpg</item>
+    <string-array name="near_photo">
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+        <item>https://storage.googleapis.com/tourista_bucket/tourista_logo_large.png</item>
+
     </string-array>
 
-    <string-array name="description_city">
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consequat ex. Nullam elit libero, commodo sit amet aliquet sit amet, vulputate eget massa. Praesent consectetur lorem ac odio viverra ullamcorper.</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consequat ex. Nullam elit libero, commodo sit amet aliquet sit amet, vulputate eget massa. Praesent consectetur lorem ac odio viverra ullamcorper.</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consequat ex. Nullam elit libero, commodo sit amet aliquet sit amet, vulputate eget massa. Praesent consectetur lorem ac odio viverra ullamcorper.</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consequat ex. Nullam elit libero, commodo sit amet aliquet sit amet, vulputate eget massa. Praesent consectetur lorem ac odio viverra ullamcorper.</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consequat ex. Nullam elit libero, commodo sit amet aliquet sit amet, vulputate eget massa. Praesent consectetur lorem ac odio viverra ullamcorper.</item>
+    <string-array name="near_description">
+        <item>Kampung Code berada di Kelurahan Kotabaru Kecamatan Gondokusuman Kota Yogyakarta Lokasi persisnya ada di RT 01RW 01 di sebelah selatan jembatan Gondolayu di Jl Jenderal Sudirman atau di sebelah timur bantaran Kali Code yang membelah Kota Yogyakarta Kampung Code terletak persis di bantaran Kali Code yang memanjang ke arah selatan dengan kontur tanah bertebing dari atas ke bawah Di bagian atas yang mepet Jl Faridan M Noto sebagian besar digunakan warga untuk usaha jasajual beli ban mobil Sedangkan di bagian bawah menjadi tempat pemukiman warga Kampung Code yang tadinya kampung biasa menjelma menjadi sebuah karya seni berkat jasa seorang arsitek sekaligus pemuka agama katolik Romo YB Manguwijaya.</item>
+        <item>Tugu Yogyakarta Jawa  Tugu Ngayogyakarta adalah sebuah landmark bersejarah yang penting di kota Yogyakarta Indonesia Tugu berarti tugu yang biasanya dibangun sebagai simbol suatu kawasan yang mengkonseptualisasikan ciriciri kawasan tersebut Karena latar belakang sejarahnya Tugu Yogyakarta telah menjadi ikon sejarah kota Tugu Yogyakarta terletak tepat di tengah persimpangan antara Jalan Mangkubumi Jalan Sudirman Jalan AM Sangaji dan Jalan Dipenogoro kota.</item>
+        <item>Walaupun hanyalah sebuah persimpangan namun persimpangan Titik 0 km ini bukanlah sebuah persimpangan biasa Karena di persimpangan ini bisa dibilang sebagai titik tengah kota Jogja karena lokasinya yang benarbenar di depan Keraton Yogyakarta sebagai pendiri daerah yang istimewa ini Terlebih lagi di sebelah utaranya adalah pusat keramaian wisata Jogja yaitu Jalan Malioboro sehingga jika anda sedang nongkrong di persimpangan Titik Nol Kilometer ini benarbenar merasakan titik tengah Jogja yang begitu syahdu Titik 0 Kilometer Yogyakarta memang tempat favorit wisatawan untuk menghabiskan waktu terlebih pada sore hari dan malam hari yang setiap hari selalu ramai disesaki oleh para wisatawan yang sekedar hanya untuk nongkrong di dudukan yang banyak disediakan di sekitar perempatan.</item>
+        <item>Keraton Ngayogyakarta Hadiningrat atau Keraton Yogyakarta bahasa Jawa translit Karaton Ngayogyakarta Hadiningrat merupakan istana resmi Kesultanan Ngayogyakarta Hadiningrat yang kini berlokasi di Kota Yogyakarta Keraton ini didirikan oleh Sri Sultan Hamengkubuwana I pada tahun 1755 sebagai IstanaKeraton Yogyakarta yang baru berdiri akibat perpecahan Mataram Islam dengan adanya Perjanjian Giyanti Keraton ini adalah pecahan dari Keraton Surakarta Hadiningrat dari Kesunanan Surakarta Kerajaan Surakarta Sehingga dinasti Mataram diteruskan oleh 2 Kerajaan yakni Kesultanan Yogyakarta dan Kesunanan Surakarta Total luas wilayah keseluruhan keraton yogyakarta mencapai 184 hektar yakni meliputi seluruh area di dalam benteng Baluwarti alunalun Lor alunalun Kidul gapura Gladak dan kompleks Masjid Gedhe Yogyakarta Sementara luas dari kedhaton inti keraton mencapai 13 hektar Walaupun Kesultanan Yogyakarta secara resmi telah menjadi bagian Republik Indonesia pada tahun 1945 kompleks bangunan keraton ini masih berfungsi sebagai tempat tinggal sultan dan rumah tangga istananya yang masih menjalankan tradisi kesultanan hingga saat ini Keraton ini kini juga merupakan salah satu objek wisata di Kota Yogyakarta Sebagian kompleks keraton merupakan museum yang menyimpan berbagai koleksi milik kesultanan termasuk berbagai pemberian dari rajaraja Eropa replika pusaka keraton dan gamelan Dari segi bangunannya keraton ini merupakan salah satu contoh arsitektur istana Jawa yang terbaik memiliki balairungbalairung mewah dan lapangan serta paviliun yang luas.</item>
     </string-array>
 
     <!--    dummy review-->
@@ -125,7 +123,7 @@
     <string-array name="umkm_photo">
         <item>https://cdn-image.hipwee.com/wp-content/uploads/2021/07/hipwee-Untitled-design-14.png</item>
         <item>https://salimahcatering.my.id/wp-content/uploads/2020/02/Soto-Ayam-P-Cholili.png</item>
-        <item>https://lh3.googleusercontent.com/p/AF1QipNt-sKHwf89vn4S8X3aB8EY_ZtxmdBvIqQKKW0N=s1360-w1360-h1020</item>
+        <item>https://lh3.googleuserconten.com/p/AF1QipNt-sKHwf89vn4S8X3aB8EY_ZtxmdBvIqQKKW0N=s1360-w1360-h1020</item>
     </string-array>
 
 <!--    dummy similiar item (pacenongan)-->

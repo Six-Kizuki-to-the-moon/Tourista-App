@@ -18,20 +18,20 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
+import com.uppermoon.touristaapp.R
 import com.uppermoon.touristaapp.data.DestinationRepository
-import com.uppermoon.touristaapp.data.DestinationResult
+import com.uppermoon.touristaapp.data.dummy.Destination
 import com.uppermoon.touristaapp.data.network.api.ApiConfig
-import com.uppermoon.touristaapp.data.network.api.ApiService
-import com.uppermoon.touristaapp.data.network.response.DestinationResponseItem
 import com.uppermoon.touristaapp.data.preferences.UserPreferences
 import com.uppermoon.touristaapp.data.preferences.ViewModelFactory
 import com.uppermoon.touristaapp.databinding.FragmentHomeBinding
 import com.uppermoon.touristaapp.domain.User
 import com.uppermoon.touristaapp.ui.adapter.CardDestinationAdapter
-import com.uppermoon.touristaapp.ui.adapter.ListDestinationAdapter
+import com.uppermoon.touristaapp.ui.adapter.ListDummyNearDestinationAdapter
 
 class HomeFragment : Fragment() {
 
@@ -39,10 +39,12 @@ class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var destinationRepository: DestinationRepository
     private lateinit var adapter: CardDestinationAdapter
-    private lateinit var secAdapter: ListDestinationAdapter
     private lateinit var user: User
     private lateinit var username: String
     private lateinit var token: String
+
+    private lateinit var rvNearYou: RecyclerView
+    private val listNearYou = ArrayList<Destination>()
 
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -79,7 +81,6 @@ class HomeFragment : Fragment() {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
-        // Mengecek izin lokasi pada saat fragment dibuat
         checkLocationPermission()
 
         initRecyclerView()
@@ -95,8 +96,34 @@ class HomeFragment : Fragment() {
             }
         }
 
-        fetchNearbyData()
+        rvNearYou = binding.rvNearItem
+        rvNearYou.setHasFixedSize(true)
+
+        listNearYou.addAll(getListNearYou())
+        showRecyclerNearYou()
+
         return binding.root
+    }
+
+    private fun showRecyclerNearYou() {
+        rvNearYou.layoutManager = LinearLayoutManager(requireContext())
+        val nearYouAdapter = ListDummyNearDestinationAdapter(listNearYou)
+        rvNearYou.adapter = nearYouAdapter
+    }
+
+    private fun getListNearYou(): List<Destination> {
+        val dataNearName = resources.getStringArray(R.array.near_name)
+        val dataNearCity = resources.getStringArray(R.array.near_city)
+        val dataNearDesc = resources.getStringArray(R.array.near_description)
+        val dataNearPhoto = resources.getStringArray(R.array.near_photo)
+
+        val list = ArrayList<Destination>()
+
+        for (i in dataNearName.indices){
+            val near = Destination(dataNearName[i], dataNearCity[i], dataNearDesc[i], dataNearPhoto[i])
+            list.add(near)
+        }
+        return list
     }
 
     private fun initRecyclerView() {
@@ -113,14 +140,12 @@ class HomeFragment : Fragment() {
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // Jika izin lokasi belum diberikan, minta izin kepada pengguna
             ActivityCompat.requestPermissions(
                 requireActivity(),
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 LOCATION_PERMISSION_REQUEST_CODE
             )
         } else {
-            // Jika izin lokasi telah diberikan, dapatkan koordinat lokasi pengguna
             getLastKnownLocation()
         }
     }
@@ -135,14 +160,6 @@ class HomeFragment : Fragment() {
             fusedLocationClient.lastLocation.addOnCompleteListener(requireActivity()) { task: Task<Location> ->
                 if (task.isSuccessful && task.result != null) {
                     userLocation = task.result
-                    // Menggunakan koordinat lokasi pengguna untuk panggilan API
-                    fetchNearbyData()
-                } else {
-//                    Snackbar.make(
-//                        binding.root,
-//                        "Tidak dapat mengambil lokasi pengguna",
-//                        Snackbar.LENGTH_SHORT
-//                    ).show()
                 }
             }
         } else {
@@ -155,22 +172,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun fetchNearbyData() {
-        homeViewModel.nearYouDestination(1, -7.8120681F, 110.346218F)
-            .observe(viewLifecycleOwner) { result ->
-                when (result) {
-                    is DestinationResult.Success -> {
-                       secAdapter = ListDestinationAdapter(result.data)
-                        binding.rvNearItem.layoutManager = LinearLayoutManager(requireActivity())
-                        binding.rvNearItem.adapter = secAdapter
-                    }
-                    is DestinationResult.Loading -> {}
-                    is DestinationResult.Error -> {
-//                        Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-    }
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 123

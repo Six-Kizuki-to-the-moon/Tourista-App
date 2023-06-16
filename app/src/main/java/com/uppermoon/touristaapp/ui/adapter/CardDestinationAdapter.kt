@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.bumptech.glide.Glide
 import com.uppermoon.touristaapp.R
-import com.uppermoon.touristaapp.data.network.response.DestinationResponse
 import com.uppermoon.touristaapp.data.network.response.DestinationResponseItem
 import com.uppermoon.touristaapp.databinding.CardDestinationItemBinding
 import com.uppermoon.touristaapp.presentation.detail.DetailActivity

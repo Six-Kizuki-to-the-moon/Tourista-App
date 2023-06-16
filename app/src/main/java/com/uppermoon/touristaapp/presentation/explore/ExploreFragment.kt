@@ -101,26 +101,22 @@ class ExploreFragment : Fragment() {
         binding.btnSearch.setOnClickListener {
             val priceText = binding.etPrice.text.toString().trim()
             if (selectedCity.isNullOrEmpty()) {
-                // Menampilkan pesan error untuk Spinner City
                 Toast.makeText(requireContext(), "Please select a city", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (selectedCategory.isNullOrEmpty()) {
-                // Menampilkan pesan error untuk Spinner Category
                 Toast.makeText(requireContext(), "Please select a category", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (priceText.isEmpty()) {
-                // Menampilkan pesan error untuk EditText Price
                 Toast.makeText(requireContext(), "Please input a budget", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             val price = priceText.toIntOrNull()
             if (price == null) {
-                // Menampilkan pesan error jika input harga tidak valid
                 Toast.makeText(requireContext(), "Invalid price input", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -135,9 +131,10 @@ class ExploreFragment : Fragment() {
                         Toast.makeText(requireContext(), result.data.status, Toast.LENGTH_SHORT).show()
                         val intent = Intent(requireContext(), RecommendPacketActivity::class.java)
                         startActivity(intent)
+                        activity?.finish()
                     }
                     is DestinationResult.Loading -> {
-                        // Tampilkan indikator loading jika diperlukan
+
                     }
                     is DestinationResult.Error -> {
                         Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()

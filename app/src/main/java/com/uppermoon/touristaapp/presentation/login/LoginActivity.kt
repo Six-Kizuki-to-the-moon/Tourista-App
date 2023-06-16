@@ -30,7 +30,6 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var destinationRepository: DestinationRepository
     private lateinit var user: User
     private lateinit var username: String
-    private lateinit var token: String
 
     private lateinit var email: String
     private lateinit var password: String

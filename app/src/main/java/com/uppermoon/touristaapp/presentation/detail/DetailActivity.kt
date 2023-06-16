@@ -6,7 +6,6 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -19,7 +18,6 @@ import com.uppermoon.touristaapp.data.DestinationRepository
 import com.uppermoon.touristaapp.data.dummy.Similiar
 import com.uppermoon.touristaapp.data.dummy.Umkm
 import com.uppermoon.touristaapp.data.network.api.ApiConfig
-import com.uppermoon.touristaapp.data.network.api.ApiService
 import com.uppermoon.touristaapp.data.network.response.DestinationResponseItem
 import com.uppermoon.touristaapp.data.preferences.UserPreferences
 import com.uppermoon.touristaapp.data.preferences.ViewModelFactory
@@ -156,6 +154,7 @@ class DetailActivity : AppCompatActivity() {
             tvDestinationName.text = detailDestination.nameWisata
             tvDestinationLocation.text = detailDestination.city
             tvDestinationDescription.text = detailDestination.descriptionWisata
+            tvRating.text = detailDestination.rating.toString()
             ivImage.load(detailDestination.destinationPhoto)
         }
     }

@@ -5,7 +5,6 @@ import androidx.lifecycle.liveData
 import com.uppermoon.touristaapp.data.network.api.ApiService
 import com.uppermoon.touristaapp.data.network.response.DetailUserResponse
 import com.uppermoon.touristaapp.data.network.response.LoginResponse
-import com.uppermoon.touristaapp.data.network.response.RefreshTokenResponse
 import com.uppermoon.touristaapp.data.network.response.RegisterResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -38,17 +37,6 @@ class UserRepository(private val apiService: ApiService) {
             val loginResponse =
                 apiService.loginUser(email, password)
             emit(UserResult.Success(loginResponse))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(UserResult.Error(e.toString()))
-        }
-    }
-
-    fun getRefreshToken() : LiveData<UserResult<RefreshTokenResponse>> = liveData {
-        emit(UserResult.Loading)
-        try {
-            val refreshTokenResponse = apiService.refreshToken()
-            emit(UserResult.Success(refreshTokenResponse))
         } catch (e: Exception) {
             e.printStackTrace()
             emit(UserResult.Error(e.toString()))

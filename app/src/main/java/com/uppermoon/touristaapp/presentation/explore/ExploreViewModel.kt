@@ -11,7 +11,6 @@ import com.uppermoon.touristaapp.domain.User
 import kotlinx.coroutines.launch
 
 class ExploreViewModel(
-    private val userRepository: UserRepository,
     private val destinationRepository: DestinationRepository,
     private val userPreferences: UserPreferences
 ) : ViewModel() {

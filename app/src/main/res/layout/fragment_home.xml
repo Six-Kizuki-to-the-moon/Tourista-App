@@ -71,6 +71,7 @@
             app:layout_constraintStart_toStartOf="@+id/tv_popular_label"
             app:layout_constraintTop_toBottomOf="@+id/tv_popular_label" />
 
+
         <TextView
             android:id="@+id/tv_near_label"
             style="@style/Title.Medium"
